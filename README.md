@@ -4,4 +4,4 @@ My dotfiles!
 Currently contains stuff related to the following programs:
 
 * tmux
-* Random aliases
+* Random bash aliases
