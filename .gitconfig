@@ -1,3 +1,5 @@
 [user]
 	name = Matti Jokitulppo
 	email = melonmanchan@gmail.com
+[credential]
+	helper = cache --timeout=999999999999
