@@ -7,9 +7,9 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'Ternjs/tern_for_vim'
 Plugin 'Shougo/neocomplete'
-Plugin 'ConradIrwin/vim-bracketed-paste' 
+Plugin 'ConradIrwin/vim-bracketed-paste'
 Plugin 'Raimondi/delimitMate'
-Plugin 'scrooloose/syntastic' 
+Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdtree'
 Plugin 'kien/ctrlp.vim'
 Plugin 'jelera/vim-javascript-syntax'
@@ -18,6 +18,10 @@ Plugin 'bling/vim-airline'
 Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'Yggdroot/indentLine'
 Plugin 'flazz/vim-colorschemes'
+Plugin 'ntpeters/vim-better-whitespace'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-fugitive'
+Plugin 'dkprice/vim-easygrep'
 
 call vundle#end()
 let g:tern_show_argument_hints='on_hold'
@@ -29,6 +33,9 @@ au BufNewFile,BufRead *.handlebars set filetype=mustache
 set tabstop=4
 set shiftwidth:4
 set expandtab
+
+" Space as mapleader
+let mapleader = " "
 
 " Show tabs as a character
 let g:indentLine_enabled = 1
@@ -47,7 +54,10 @@ set number
 " Make backspace delete empty
 set backspace=indent,eol,start
 
-" Map moving to command mode as jk, since reaching for ESC is for suckers! 
+" Set default shell as regular ol bash
+set shell=/bin/bash
+
+" Map moving to command mode as jk, since reaching for ESC is for suckers!
 inoremap jk <Esc>
 
 " Ctrl-S as save
@@ -70,6 +80,11 @@ let g:airline_powerline_fonts = 1
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
 nmap <silent> <A-Up> :wincmd k<CR>
 nmap <silent> <A-Down> :wincmd j<CR>
 nmap <silent> <A-Left> :wincmd h<CR>
@@ -77,9 +92,9 @@ nmap <silent> <A-Right> :wincmd l<CR>
 
 " Set up CtrlP related stuff, ignore git folders and nodejs node_modules in
 " results
-let g:ctrlp_map = '<c-p>'
+let g:ctrlp_map = '<leader>p'
 let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_custom_ignore = 'node_modules\|git'
+let g:ctrlp_custom_ignore = 'node_modules\|git\|www\|platforms\'
 
 let g:acp_enableAtStartup = 0
 set laststatus=2
@@ -120,7 +135,7 @@ function! s:my_cr_function()
     return pumvisible() ? "\<C-y>" : "\<CR>"
 endfunction
 " <TAB>: completion.
-" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " "<C-h>, <BS>: close popup and delete backword char.
 inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
@@ -146,6 +161,7 @@ if !exists('g:neocomplete#sources#omni#input_patterns')
    let g:neocomplete#sources#omni#input_patterns = {}
 endif
 
+" Hack for Alt + arrow keys to work in tmux
 if &term =~ '^screen'
     " tmux will send xterm-style keys when its xterm-keys option is on
     execute "set <xUp>=\e[1;*A"
