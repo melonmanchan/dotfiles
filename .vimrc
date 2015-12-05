@@ -5,7 +5,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
-" Plugin 'Ternjs/tern_for_vim'
+Plugin 'Ternjs/tern_for_vim'
 Plugin 'Shougo/neocomplete'
 Plugin 'Shougo/neosnippet'
 Plugin 'Shougo/neosnippet-snippets'
@@ -72,8 +72,8 @@ set shell=/bin/bash
 nnoremap Q <nop>
 
 " Map moving to command mode as jk, since reaching for ESC is for suckers!
-inoremap jk <Esc>
-inoremap JK <Esc>
+inoremap ö <Esc>
+inoremap Ö <Esc>
 
 " Ctrl-S as save
 noremap <silent> <C-S>          :update<CR>
@@ -111,13 +111,18 @@ let g:syntastic_scss_checkers = ['sass']
 
 let g:closetag_filenames = "*.html,*.htm,*.moustache"
 
-nmap <silent> <C-Up> :wincmd k<CR>
-nmap <silent> <C-Down> :wincmd j<CR>
-nmap <silent> <C-Left> :wincmd h<CR>
-nmap <silent> <C-Right> :wincmd l<CR>
+inoremap <silent> <C-Up> <C-O>:wincmd k<CR>
+inoremap <silent> <C-Down> <C-O> :wincmd j<CR>
+inoremap <silent> <C-Left> <C-O>:wincmd h<CR>
+inoremap <silent> <C-Right> <C-O>:wincmd l<CR>
 
+nnoremap <silent> <C-Up>    :wincmd k<CR>
+nnoremap <silent> <C-Down>  :wincmd j<CR>
+nnoremap <silent> <C-Left>  :wincmd h<CR>
+nnoremap <silent> <C-Right> :wincmd l<CR>
 " Set up CtrlP related stuff, ignore git folders and nodejs node_modules in
 " results
+let g:ctrlp_show_hidden = 1
 let g:ctrlp_map = '<leader>p'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_custom_ignore = 'node_modules\|git\|www\|platforms\|plugins'
@@ -229,4 +234,6 @@ augroup reload_vimrc " {
     autocmd!
     autocmd BufWritePost $MYVIMRC source $MYVIMRC
 augroup END " }
+set backupdir=~/vimtmp,.
+set directory=~/vimtmp,.
 
