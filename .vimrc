@@ -29,6 +29,7 @@ Plugin 'sheerun/vim-polyglot'
 Plugin 'hail2u/vim-css3-syntax'
 Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-endwise'
+Plugin 'altercation/vim-colors-solarized'
 Plugin 'tomasr/molokai'
 call vundle#end()
 
@@ -40,11 +41,16 @@ filetype plugin indent on
 
 au BufNewFile,BufRead *.handlebars set filetype=mustache
 
-colorscheme 256-grayvim
+set background=dark
+colorscheme solarized
 " Tabs as 4 spaces
 set tabstop=4
 set shiftwidth:4
 set expandtab
+set smarttab
+set wildmenu
+" Show commands as you're typing 'em
+set showcmd
 
 " Space as mapleader
 let mapleader = " "
@@ -72,8 +78,8 @@ set shell=/bin/bash
 nnoremap Q <nop>
 
 " Map moving to command mode as jk, since reaching for ESC is for suckers!
-inoremap ö <Esc>
-inoremap Ö <Esc>
+inoremap jk <Esc>
+inoremap JK <Esc>
 
 " Ctrl-S as save
 noremap <silent> <C-S>          :update<CR>
@@ -109,17 +115,24 @@ let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_css_checkers = ['csslint']
 let g:syntastic_scss_checkers = ['sass']
 
-let g:closetag_filenames = "*.html,*.htm,*.moustache"
+" let g:closetag_filenames = "*.html,*.htm,*.moustache"
 
-inoremap <silent> <C-Up> <C-O>:wincmd k<CR>
-inoremap <silent> <C-Down> <C-O> :wincmd j<CR>
-inoremap <silent> <C-Left> <C-O>:wincmd h<CR>
+nnoremap <silent> <M-Up>    :resize +1<CR>
+nnoremap <silent> <M-Down>  :resize -1<CR>
+nnoremap <silent> <M-Left>  :call IntelligentVerticalResize('left')<CR>
+nnoremap <silent> <M-Right> :call IntelligentVerticalResize('right')<CR>
+
+" Ctrl with arrow keys to change window
+inoremap <silent> <C-Up>    <C-O>:wincmd k<CR>
+inoremap <silent> <C-Down>  <C-O> :wincmd j<CR>
+inoremap <silent> <C-Left>  <C-O>:wincmd h<CR>
 inoremap <silent> <C-Right> <C-O>:wincmd l<CR>
 
 nnoremap <silent> <C-Up>    :wincmd k<CR>
 nnoremap <silent> <C-Down>  :wincmd j<CR>
 nnoremap <silent> <C-Left>  :wincmd h<CR>
 nnoremap <silent> <C-Right> :wincmd l<CR>
+
 " Set up CtrlP related stuff, ignore git folders and nodejs node_modules in
 " results
 let g:ctrlp_show_hidden = 1
@@ -234,6 +247,25 @@ augroup reload_vimrc " {
     autocmd!
     autocmd BufWritePost $MYVIMRC source $MYVIMRC
 augroup END " }
+
+
+function! IntelligentVerticalResize(direction) abort
+  let l:window_resize_count = 5
+  let l:current_window_is_last_window = (winnr() == winnr('$'))
+
+  if (a:direction ==# 'left')
+    let [l:modifier_1, l:modifier_2] = ['+', '-']
+  else
+    let [l:modifier_1, l:modifier_2] = ['-', '+']
+  endif
+
+  let l:modifier = l:current_window_is_last_window ? l:modifier_1 : l:modifier_2
+  let l:command = 'vertical resize ' . l:modifier . l:window_resize_count . '<CR>'
+  execute l:command
+endfunction
+
+
+
 set backupdir=~/vimtmp,.
 set directory=~/vimtmp,.
 
