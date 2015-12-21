@@ -3,3 +3,7 @@
 	email = melonmanchan@gmail.com
 [credential]
 	helper = cache timeout=99999999
+[core]
+	excludesfile = ~/.global_gitignore
+[color]
+	ui = auto
