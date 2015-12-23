@@ -1,0 +1,108 @@
+set nocompatible
+filetype off
+syntax on
+set rtp+=~/.vim/bundle/Vundle.vim
+
+filetype plugin indent on
+
+au BufNewFile,BufRead *.handlebars set filetype=mustache
+
+" Tabs as 4 spaces
+set tabstop=4
+set shiftwidth:4
+set expandtab
+set smarttab
+set wildmenu
+" Show commands as you're typing 'em
+set showcmd
+
+" Space as mapleader
+let mapleader = " "
+
+
+" Mousemode on!
+set mouse=a
+
+" Set my preferred colorscheme
+" colors 256-grayvim
+" Show linenumbers by default
+set number
+
+" Make backspace delete empty
+set backspace=indent,eol,start
+
+" Set default shell as regular ol bash
+set shell=/bin/bash
+
+" No weird ex mode, please!
+nnoremap Q <nop>
+
+" Map moving to command mode as jk, since reaching for ESC is for suckers!
+inoremap jk <Esc>
+inoremap JK <Esc>
+
+" Ctrl-S as save
+noremap <silent> <C-S>          :update<CR>
+vnoremap <silent> <C-S>         <C-C>:update<CR>
+inoremap <silent> <C-S>         <C-O>:update<CR>
+
+" And Ctrl-Q as quit
+noremap <C-Q> <C-O>:q!<CR>
+inoremap <C-Q> <C-O>:q!<CR>
+:nmap <C-Q> :q!<CR>
+
+noremap <silent> <C-z>          :u<CR>
+vnoremap <silent> <C-z>         :u<CR>
+inoremap <silent> <C-z>         <C-O>u
+
+
+nnoremap <silent> <M-Up>    :resize +1<CR>
+nnoremap <silent> <M-Down>  :resize -1<CR>
+nnoremap <silent> <M-Left>  :call IntelligentVerticalResize('left')<CR>
+nnoremap <silent> <M-Right> :call IntelligentVerticalResize('right')<CR>
+
+set laststatus=2
+
+" For conceal markers.
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
+
+
+" Git
+nnoremap <leader>gc :Gcommit<CR>
+nnoremap <leader>gp :Gpush<CR>
+nnoremap <leader>gs :Gstatus<CR>
+nnoremap <leader>gd :Gvdiff<CR>
+nnoremap <leader>gl :Gpull<CR>
+
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType html setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+
+
+function! IntelligentVerticalResize(direction) abort
+  let l:window_resize_count = 5
+  let l:current_window_is_last_window = (winnr() == winnr('$'))
+
+  if (a:direction ==# 'left')
+    let [l:modifier_1, l:modifier_2] = ['+', '-']
+  else
+    let [l:modifier_1, l:modifier_2] = ['-', '+']
+  endif
+
+  let l:modifier = l:current_window_is_last_window ? l:modifier_1 : l:modifier_2
+  let l:command = 'vertical resize ' . l:modifier . l:window_resize_count . '<CR>'
+  execute l:command
+endfunction
+
+set backupdir=~/vimtmp,.
+set directory=~/vimtmp,.
+
+" IDEAVIM specific stuff
+set showmode
+
+
