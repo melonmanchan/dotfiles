@@ -31,6 +31,11 @@ Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-endwise'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'tomasr/molokai'
+Plugin 'bronson/vim-visual-star-search'
+Plugin 'jelera/vim-javascript-syntax'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
+Bundle 'Blackrush/vim-gocode'
 call vundle#end()
 
 let NERDTreeShowHidden=1
@@ -78,8 +83,8 @@ set shell=/bin/bash
 nnoremap Q <nop>
 
 " Map moving to command mode as jk, since reaching for ESC is for suckers!
-inoremap jk <Esc>
-inoremap JK <Esc>
+imap jk <Esc>
+imap JK <Esc>
 
 " Ctrl-S as save
 noremap <silent> <C-S>          :update<CR>
@@ -141,7 +146,7 @@ let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_custom_ignore = 'node_modules\|git\|www\|platforms\|plugins'
 
 let g:user_emmet_install_global = 0
-autocmd FileType html,css,mustache EmmetInstall
+autocmd FileType html,css,mustache,javascript EmmetInstall
 let g:user_emmet_leader_key=','
 
 let g:acp_enableAtStartup = 0
@@ -213,11 +218,7 @@ imap <expr><TAB>
  smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
  \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
-" For conceal markers.
-if has('conceal')
-  set conceallevel=2 concealcursor=niv
-endif
-
+let g:jsx_ext_required = 0
 
 " Git
 nnoremap <leader>gc :Gcommit<CR>
@@ -231,6 +232,11 @@ autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType html setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+autocmd FileType go setlocal omnifunc=go#complete#Complete
+
+let g:neocomplete#sources#omni#functions = {'go': 'go#complete#Complete'}
+
+
 if !exists('g:neocomplete#sources#omni#input_patterns')
 "   let g:neocomplete#sources#omni#input_patterns = {}
 endif
