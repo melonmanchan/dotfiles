@@ -36,6 +36,7 @@ Plugin 'jelera/vim-javascript-syntax'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Bundle 'Blackrush/vim-gocode'
+Plugin 'godlygeek/tabular'
 call vundle#end()
 
 let NERDTreeShowHidden=1
@@ -43,7 +44,7 @@ let NERDTreeShowHidden=1
 let g:polyglot_disabled = ['css', 'scss']
 let g:tern_show_argument_hints='on_hold'
 filetype plugin indent on
-
+filetype plugin on
 au BufNewFile,BufRead *.handlebars set filetype=mustache
 
 set background=dark
