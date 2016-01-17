@@ -39,3 +39,11 @@ vim -c VundleUpdate -c quitall
 
 cd ~/.vim/bundle/tern_for_vim
 npm install
+
+cd
+
+wget https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
+wget https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf
+mv PowerlineSymbols.otf ~/.fonts/
+sudo fc-cache -vf ~/.fonts/
+mv 10-powerline-symbols.conf ~/.config/fontconfig/conf.d/
