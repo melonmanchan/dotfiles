@@ -32,3 +32,10 @@ sudo mkdir /usr/share/vim
 sudo mkdir /usr/share/vim/vim74
 sudo cp -fr runtime/* /usr/share/vim/vim74/
 
+mkdir ~/vimtmp
+
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+vim -c VundleUpdate -c quitall
+
+cd ~/.vim/bundle/tern_for_vim
+npm install
