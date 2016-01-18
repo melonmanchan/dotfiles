@@ -130,6 +130,11 @@ while c <= 'z'
   let c = nr2char(1+char2nr(c))
 endw
 
+" Another Konsole-specific hack to change cursor according to mode
+let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+let &t_SR = "\<Esc>]50;CursorShape=2\x7"
+let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+
 set ttimeout ttimeoutlen=50
 
 nnoremap <silent> <M-Up>    :resize +1<CR>
@@ -137,10 +142,10 @@ nnoremap <silent> <M-Down>  :resize -1<CR>
 nnoremap <silent> <M-Left>  :call IntelligentVerticalResize('left')<CR>
 nnoremap <silent> <M-Right> :call IntelligentVerticalResize('right')<CR>
 
-nnoremap <silent> <M-K>    :resize +1<CR>
-nnoremap <silent> <M-J>  :resize -1<CR>
-nnoremap <silent> <M-H>  :call IntelligentVerticalResize('left')<CR>
-nnoremap <silent> <M-L> :call IntelligentVerticalResize('right')<CR>
+nnoremap <silent> <m-k> :resize +1<CR>
+nnoremap <silent> <m-j> :resize -1<CR>
+nnoremap <silent> <m-h> :call IntelligentVerticalResize('left')<CR>
+nnoremap <silent> <m-l> :call IntelligentVerticalResize('right')<CR>
 
 " Ctrl with arrow keys to change window
 inoremap <silent> <C-Up>    <C-O>:wincmd k<CR>
