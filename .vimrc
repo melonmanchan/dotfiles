@@ -122,12 +122,25 @@ let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_css_checkers = ['csslint']
 let g:syntastic_scss_checkers = ['sass']
 
-" let g:closetag_filenames = "*.html,*.htm,*.moustache"
+" Weird hack to enable alt keys in konsole
+let c='a'
+while c <= 'z'
+  exec "set <A-".c.">=\e".c
+  exec "imap \e".c." <A-".c.">"
+  let c = nr2char(1+char2nr(c))
+endw
+
+set ttimeout ttimeoutlen=50
 
 nnoremap <silent> <M-Up>    :resize +1<CR>
 nnoremap <silent> <M-Down>  :resize -1<CR>
 nnoremap <silent> <M-Left>  :call IntelligentVerticalResize('left')<CR>
 nnoremap <silent> <M-Right> :call IntelligentVerticalResize('right')<CR>
+
+nnoremap <silent> <M-K>    :resize +1<CR>
+nnoremap <silent> <M-J>  :resize -1<CR>
+nnoremap <silent> <M-H>  :call IntelligentVerticalResize('left')<CR>
+nnoremap <silent> <M-L> :call IntelligentVerticalResize('right')<CR>
 
 " Ctrl with arrow keys to change window
 inoremap <silent> <C-Up>    <C-O>:wincmd k<CR>
