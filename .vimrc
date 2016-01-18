@@ -26,13 +26,14 @@ Plugin 'ap/vim-css-color'
 Plugin 'mattn/emmet-vim'
 Plugin 'alvan/vim-closetag'
 Plugin 'sheerun/vim-polyglot'
-Plugin 'hail2u/vim-css3-syntax'
+Plugin 'othree/csscomplete.vim'
 Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-endwise'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'tomasr/molokai'
 Plugin 'bronson/vim-visual-star-search'
 Plugin 'jelera/vim-javascript-syntax'
+Plugin 'othree/jspc.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Bundle 'Blackrush/vim-gocode'
@@ -139,6 +140,17 @@ nnoremap <silent> <C-Down>  :wincmd j<CR>
 nnoremap <silent> <C-Left>  :wincmd h<CR>
 nnoremap <silent> <C-Right> :wincmd l<CR>
 
+" Ctrl with arrow keys to change window
+inoremap <silent> <C-K>    <C-O>:wincmd k<CR>
+inoremap <silent> <C-J>  <C-O> :wincmd j<CR>
+inoremap <silent> <C-H>  <C-O>:wincmd h<CR>
+inoremap <silent> <C-L> <C-O>:wincmd l<CR>
+
+nnoremap <silent><C-K>  :wincmd k<CR>
+nnoremap <silent><C-J>  :wincmd j<CR>
+nnoremap <silent><C-H>  :wincmd h<CR>
+nnoremap <silent><C-L>  :wincmd l<CR>
+
 " Set up CtrlP related stuff, ignore git folders and nodejs node_modules in
 " results
 let g:ctrlp_show_hidden = 1
@@ -236,7 +248,6 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 autocmd FileType go setlocal omnifunc=go#complete#Complete
 
 let g:neocomplete#sources#omni#functions = {'go': 'go#complete#Complete'}
-
 
 if !exists('g:neocomplete#sources#omni#input_patterns')
 "   let g:neocomplete#sources#omni#input_patterns = {}
