@@ -158,7 +158,7 @@ nnoremap <silent> <C-Down>  :wincmd j<CR>
 nnoremap <silent> <C-Left>  :wincmd h<CR>
 nnoremap <silent> <C-Right> :wincmd l<CR>
 
-" Ctrl with arrow keys to change window
+" Ctrl with vim movement keys to also change window
 inoremap <silent> <C-K>    <C-O>:wincmd k<CR>
 inoremap <silent> <C-J>  <C-O> :wincmd j<CR>
 inoremap <silent> <C-H>  <C-O>:wincmd h<CR>
@@ -168,6 +168,10 @@ nnoremap <silent><C-K>  :wincmd k<CR>
 nnoremap <silent><C-J>  :wincmd j<CR>
 nnoremap <silent><C-H>  :wincmd h<CR>
 nnoremap <silent><C-L>  :wincmd l<CR>
+
+" Map quick search in normal mode to space and ctrl-space
+noremap <space> /
+noremap <c-space> ?
 
 " Set up CtrlP related stuff, ignore git folders and nodejs node_modules in
 " results
