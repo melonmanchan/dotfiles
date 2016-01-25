@@ -5,7 +5,6 @@ sudo apt-get --yes --force-yes install liblua5.1-dev luajit libluajit-5.1 python
 
 sudo mkdir /usr/include/lua5.1/include
 sudo ln -s /usr/include/luajit-2.0 /usr/include/lua5.1/include
-cp ./.vimrc ~/.vimrc
 cd ~
 git clone --depth=1 https://github.com/vim/vim.git
 cd vim/src
