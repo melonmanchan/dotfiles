@@ -23,6 +23,8 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
 Plugin 'dkprice/vim-easygrep'
 Plugin 'ap/vim-css-color'
+Plugin 'mattn/webapi-vim'
+Plugin 'mattn/gist-vim'
 Plugin 'mattn/emmet-vim'
 Plugin 'alvan/vim-closetag'
 Plugin 'sheerun/vim-polyglot'
@@ -38,10 +40,12 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Bundle 'Blackrush/vim-gocode'
 Plugin 'godlygeek/tabular'
+Plugin 'christoomey/vim-tmux-navigator'
 call vundle#end()
 
 let NERDTreeShowHidden=1
 
+autocmd InsertLeave * :set hls!
 let g:polyglot_disabled = ['css', 'scss']
 let g:tern_show_argument_hints='on_hold'
 filetype plugin indent on
@@ -60,12 +64,18 @@ set wildmenu
 set showcmd
 
 " Space as mapleader
-let mapleader = " "
+let mapleader = ","
 
 " Show tabs as a character
 let g:indentLine_enabled = 1
 let g:indentLine_color_term = 239
 let g:indentLine_char = '┆'
+
+" Highlight search results
+set incsearch
+map <leader>m :set hls!<CR>
+" Disable colors on insert
+autocmd InsertEnter * :let @/=""
 
 " Mousemode on!
 set mouse=a
@@ -147,27 +157,10 @@ nnoremap <silent> <m-j> :resize -1<CR>
 nnoremap <silent> <m-h> :call IntelligentVerticalResize('left')<CR>
 nnoremap <silent> <m-l> :call IntelligentVerticalResize('right')<CR>
 
-" Ctrl with arrow keys to change window
-inoremap <silent> <C-Up>    <C-O>:wincmd k<CR>
-inoremap <silent> <C-Down>  <C-O> :wincmd j<CR>
-inoremap <silent> <C-Left>  <C-O>:wincmd h<CR>
-inoremap <silent> <C-Right> <C-O>:wincmd l<CR>
 
-nnoremap <silent> <C-Up>    :wincmd k<CR>
-nnoremap <silent> <C-Down>  :wincmd j<CR>
-nnoremap <silent> <C-Left>  :wincmd h<CR>
-nnoremap <silent> <C-Right> :wincmd l<CR>
 
-" Ctrl with vim movement keys to also change window
-inoremap <silent> <C-K>    <C-O>:wincmd k<CR>
-inoremap <silent> <C-J>  <C-O> :wincmd j<CR>
-inoremap <silent> <C-H>  <C-O>:wincmd h<CR>
-inoremap <silent> <C-L> <C-O>:wincmd l<CR>
-
-nnoremap <silent><C-K>  :wincmd k<CR>
-nnoremap <silent><C-J>  :wincmd j<CR>
-nnoremap <silent><C-H>  :wincmd h<CR>
-nnoremap <silent><C-L>  :wincmd l<CR>
+" Default to private GitHub gists
+let g:gist_post_private = 1
 
 " Map quick search in normal mode to space and ctrl-space
 noremap <space> /
