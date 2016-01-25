@@ -7,7 +7,7 @@ sudo mkdir /usr/include/lua5.1/include
 sudo ln -s /usr/include/luajit-2.0 /usr/include/lua5.1/include
  
 cd ~
-git clone https://github.com/vim/vim.git
+git clone --depth=1 https://github.com/vim/vim.git
 cd vim/src
 make distclean
 ./configure --with-features=huge \
