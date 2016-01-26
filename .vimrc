@@ -6,6 +6,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'Ternjs/tern_for_vim'
+Plugin 'jszakmeister/vim-togglecursor'
 Plugin 'Shougo/neocomplete'
 Plugin 'Shougo/neosnippet'
 Plugin 'Shougo/neosnippet-snippets'
@@ -35,6 +36,7 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'tomasr/molokai'
 Plugin 'bronson/vim-visual-star-search'
 Plugin 'jelera/vim-javascript-syntax'
+Plugin 'haya14busa/incsearch.vim'
 Plugin 'othree/jspc.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
@@ -45,7 +47,6 @@ call vundle#end()
 
 let NERDTreeShowHidden=1
 
-autocmd InsertLeave * :set hls!
 let g:polyglot_disabled = ['css', 'scss']
 let g:tern_show_argument_hints='on_hold'
 filetype plugin indent on
@@ -71,11 +72,10 @@ let g:indentLine_enabled = 1
 let g:indentLine_color_term = 239
 let g:indentLine_char = '┆'
 
-" Highlight search results
-set incsearch
-map <leader>m :set hls!<CR>
-" Disable colors on insert
-autocmd InsertEnter * :let @/=""
+" autocmd InsertLeave * :set hls!
+"" Highlight search results
+"map <leader>m :set hls!<CR>
+"" Disable colors on insert
 
 " Mousemode on!
 set mouse=a
@@ -97,6 +97,31 @@ nnoremap Q <nop>
 " Map moving to command mode as jk, since reaching for ESC is for suckers!
 imap jk <Esc>
 imap JK <Esc>
+
+set hlsearch
+set incsearch
+" incsearch mappings, enable highlighting etc
+let g:incsearch#auto_nohlsearch = 1
+map n  <Plug>(incsearch-nohl-n)
+map N  <Plug>(incsearch-nohl-N)
+map *  <Plug>(incsearch-nohl-*)
+map #  <Plug>(incsearch-nohl-#)
+map g* <Plug>(incsearch-nohl-g*)
+map g# <Plug>(incsearch-nohl-g#)
+
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+map <space>  <Plug>(incsearch-forward)
+map <c-space>  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
+
+
+autocmd InsertEnter * :set nohlsearch
+
+" Map quick search in normal mode to space and ctrl-space
+" noremap <space> /
+" noremap <c-space> ?
+"
 
 " Ctrl-S as save
 noremap <silent> <C-S>          :update<CR>
@@ -161,10 +186,6 @@ nnoremap <silent> <m-l> :call IntelligentVerticalResize('right')<CR>
 
 " Default to private GitHub gists
 let g:gist_post_private = 1
-
-" Map quick search in normal mode to space and ctrl-space
-noremap <space> /
-noremap <c-space> ?
 
 " Set up CtrlP related stuff, ignore git folders and nodejs node_modules in
 " results
