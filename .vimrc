@@ -119,10 +119,9 @@ map g/ <Plug>(incsearch-stay)
 
 autocmd InsertEnter * :set nohlsearch
 
-" Map quick search in normal mode to space and ctrl-space
-" noremap <space> /
-" noremap <c-space> ?
-"
+" Reselect visual mode selection after shift
+vnoremap > >gv
+vnoremap < <gv
 
 " Ctrl-S as save
 noremap <silent> <C-S>          :update<CR>
