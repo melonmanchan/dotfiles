@@ -9,13 +9,16 @@ Plugin 'Ternjs/tern_for_vim'
 Plugin 'jszakmeister/vim-togglecursor'
 Plugin 'Shougo/neocomplete'
 Plugin 'Shougo/neosnippet'
+Plugin 'melonmanchan/vim-tmux-resizer'
 Plugin 'Shougo/neosnippet-snippets'
 Plugin 'ConradIrwin/vim-bracketed-paste'
 Plugin 'Raimondi/delimitMate'
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'kien/ctrlp.vim'
 Plugin 'cakebaker/scss-syntax.vim'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'bling/vim-airline'
 Plugin 'Yggdroot/indentLine'
 Plugin 'flazz/vim-colorschemes'
@@ -46,8 +49,6 @@ Plugin 'godlygeek/tabular'
 Plugin 'christoomey/vim-tmux-navigator'
 call vundle#end()
 
-let NERDTreeShowHidden=1
-
 let g:polyglot_disabled = ['css', 'scss']
 let g:tern_show_argument_hints='on_hold'
 filetype plugin indent on
@@ -68,6 +69,8 @@ set showcmd
 " Space as mapleader
 let mapleader = ","
 
+let NERDTreeShowHidden=1
+map <leader>. :NERDTreeToggle<CR>
 " Show tabs as a character
 let g:indentLine_enabled = 1
 let g:indentLine_color_term = 239
@@ -141,17 +144,14 @@ inoremap <silent> <C-z>         <C-O>u
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-
+" 
 " Airline fonts
 let g:airline_powerline_fonts = 1
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-
+let g:airline_theme = 'solarized'
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-
 let g:syntastic_javascript_checkers = ['eslint']
 
 let g:syntastic_css_checkers = ['csslint']
@@ -172,15 +172,36 @@ let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
 set ttimeout ttimeoutlen=50
 
-nnoremap <silent> <M-Up>    :resize +1<CR>
-nnoremap <silent> <M-Down>  :resize -1<CR>
-nnoremap <silent> <M-Left>  :call IntelligentVerticalResize('left')<CR>
-nnoremap <silent> <M-Right> :call IntelligentVerticalResize('right')<CR>
+" function! IntelligentVerticalResize(direction) abort
+"   let l:window_resize_count = 5
+"   let l:current_window_is_last_window = (winnr() == winnr('$'))
+" 
+"   if (a:direction ==# 'left')
+"     let [l:modifier_1, l:modifier_2] = ['+', '-']
+"   else
+"     let [l:modifier_1, l:modifier_2] = ['-', '+']
+"   endif
+" 
+"   let l:modifier = l:current_window_is_last_window ? l:modifier_1 : l:modifier_2
+"   let l:command = 'vertical resize ' . l:modifier . l:window_resize_count . '<CR>'
+"   execute l:command
+" endfunction
 
-nnoremap <silent> <m-k> :resize +1<CR>
-nnoremap <silent> <m-j> :resize -1<CR>
-nnoremap <silent> <m-h> :call IntelligentVerticalResize('left')<CR>
-nnoremap <silent> <m-l> :call IntelligentVerticalResize('right')<CR>
+" nnoremap <silent> <m-h> :resize +1<CR>
+" nnoremap <silent> <m-l> :resize -1<CR>
+" nnoremap <silent> <m-j> :5winc +<CR>
+" nnoremap <silent> <m-k> :5winc -<CR>
+
+" nnoremap <silent> <m-k> :resize -1<CR>
+" nnoremap <silent> <m-j> :resize +1<CR>
+" nnoremap <silent> <m-h> :call IntelligentVerticalResize('left')<CR>
+" nnoremap <silent> <m-l> :call IntelligentVerticalResize('right')<CR>
+
+" nnoremap <silent> <M-Up>    :resize +1<CR>
+" nnoremap <silent> <M-Down>  :resize -1<CR>
+" nnoremap <silent> <M-Left>  :call IntelligentVerticalResize('left')<CR>
+" nnoremap <silent> <M-Right> :call IntelligentVerticalResize('right')<CR>
+" 
 
 
 
@@ -193,6 +214,13 @@ let g:ctrlp_show_hidden = 1
 let g:ctrlp_map = '<leader>p'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_custom_ignore = 'node_modules\|git\|www\|platforms\|plugins'
+
+" Use silver searcher if available
+if executable('ag')
+    set grepprg=ag\ --nogroup\ --nocolor
+    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+    let g:ctrlp_use_caching = 0
+endif
 
 let g:user_emmet_install_global = 0
 autocmd FileType html,css,mustache,javascript EmmetInstall
@@ -303,22 +331,6 @@ augroup reload_vimrc " {
     autocmd!
     autocmd BufWritePost $MYVIMRC source $MYVIMRC
 augroup END " }
-
-
-function! IntelligentVerticalResize(direction) abort
-  let l:window_resize_count = 5
-  let l:current_window_is_last_window = (winnr() == winnr('$'))
-
-  if (a:direction ==# 'left')
-    let [l:modifier_1, l:modifier_2] = ['+', '-']
-  else
-    let [l:modifier_1, l:modifier_2] = ['-', '+']
-  endif
-
-  let l:modifier = l:current_window_is_last_window ? l:modifier_1 : l:modifier_2
-  let l:command = 'vertical resize ' . l:modifier . l:window_resize_count . '<CR>'
-  execute l:command
-endfunction
 
 
 
