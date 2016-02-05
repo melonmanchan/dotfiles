@@ -16,7 +16,7 @@ Plugin 'Raimondi/delimitMate'
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'bling/vim-airline'
@@ -47,7 +47,11 @@ Plugin 'mxw/vim-jsx'
 Bundle 'Blackrush/vim-gocode'
 Plugin 'godlygeek/tabular'
 Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'ryanoasis/vim-devicons'
 call vundle#end()
+
+set encoding=utf-8
+set fileencoding=utf-8
 
 let g:polyglot_disabled = ['css', 'scss']
 let g:tern_show_argument_hints='on_hold'
@@ -70,7 +74,23 @@ set showcmd
 let mapleader = ","
 
 let NERDTreeShowHidden=1
+let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
+let g:WebDevIconsUnicodeGlyphDoubleWidth = 1
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "✹ ",
+    \ "Staged"    : "✚ ",
+    \ "Untracked" : "✭ ",
+    \ "Renamed"   : "➜ ",
+    \ "Unmerged"  : "═ ",
+    \ "Deleted"   : "✖ ",
+    \ "Dirty"     : "✗ ",
+    \ "Clean"     : "✔︎ ",
+    \ "Unknown"   : "? "
+    \ }
+
 map <leader>. :NERDTreeToggle<CR>
+
+
 " Show tabs as a character
 let g:indentLine_enabled = 1
 let g:indentLine_color_term = 239
@@ -119,8 +139,8 @@ map <space>  <Plug>(incsearch-forward)
 map <c-space>  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
 
-
 autocmd InsertEnter * :set nohlsearch
+
 
 " Reselect visual mode selection after shift
 vnoremap > >gv
@@ -170,8 +190,8 @@ let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_SR = "\<Esc>]50;CursorShape=2\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
-set ttimeout ttimeoutlen=50
-
+set timeoutlen=1000
+set ttimeoutlen=0
 " function! IntelligentVerticalResize(direction) abort
 "   let l:window_resize_count = 5
 "   let l:current_window_is_last_window = (winnr() == winnr('$'))
