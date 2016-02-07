@@ -73,9 +73,11 @@ set showcmd
 " Space as mapleader
 let mapleader = ","
 
+autocmd FileType nerdtree setlocal nolist
 let NERDTreeShowHidden=1
-let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
+let g:WebDevIconsNerdTreeGitPluginForceVAlign = 0
 let g:WebDevIconsUnicodeGlyphDoubleWidth = 1
+
 let g:NERDTreeIndicatorMapCustom = {
     \ "Modified"  : "✹ ",
     \ "Staged"    : "✚ ",
@@ -96,16 +98,9 @@ let g:indentLine_enabled = 1
 let g:indentLine_color_term = 239
 let g:indentLine_char = '┆'
 
-" autocmd InsertLeave * :set hls!
-"" Highlight search results
-"map <leader>m :set hls!<CR>
-"" Disable colors on insert
-
 " Mousemode on!
 set mouse=a
 
-" Set my preferred colorscheme
-" colors 256-grayvim
 " Show linenumbers by default
 set number
 
@@ -124,7 +119,8 @@ imap JK <Esc>
 
 set hlsearch
 set incsearch
-" incsearch mappings, enable highlighting etc
+
+" incsearch plugin mappings, enable highlighting etc
 let g:incsearch#auto_nohlsearch = 1
 map n  <Plug>(incsearch-nohl-n)
 map N  <Plug>(incsearch-nohl-N)
@@ -140,7 +136,6 @@ map <c-space>  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
 
 autocmd InsertEnter * :set nohlsearch
-
 
 " Reselect visual mode selection after shift
 vnoremap > >gv
@@ -164,10 +159,7 @@ inoremap <silent> <C-z>         <C-O>u
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-" 
-" Airline fonts
-let g:airline_powerline_fonts = 1
-let g:airline_theme = 'solarized'
+
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
@@ -177,6 +169,10 @@ let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_css_checkers = ['csslint']
 let g:syntastic_scss_checkers = ['sass']
 
+" Airline fonts
+let g:airline_powerline_fonts = 1
+let g:airline_theme = 'solarized'
+
 " Weird hack to enable alt keys in konsole
 let c='a'
 while c <= 'z'
@@ -185,45 +181,8 @@ while c <= 'z'
   let c = nr2char(1+char2nr(c))
 endw
 
-" Another Konsole-specific hack to change cursor according to mode
-let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-let &t_SR = "\<Esc>]50;CursorShape=2\x7"
-let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-
 set timeoutlen=1000
 set ttimeoutlen=0
-" function! IntelligentVerticalResize(direction) abort
-"   let l:window_resize_count = 5
-"   let l:current_window_is_last_window = (winnr() == winnr('$'))
-" 
-"   if (a:direction ==# 'left')
-"     let [l:modifier_1, l:modifier_2] = ['+', '-']
-"   else
-"     let [l:modifier_1, l:modifier_2] = ['-', '+']
-"   endif
-" 
-"   let l:modifier = l:current_window_is_last_window ? l:modifier_1 : l:modifier_2
-"   let l:command = 'vertical resize ' . l:modifier . l:window_resize_count . '<CR>'
-"   execute l:command
-" endfunction
-
-" nnoremap <silent> <m-h> :resize +1<CR>
-" nnoremap <silent> <m-l> :resize -1<CR>
-" nnoremap <silent> <m-j> :5winc +<CR>
-" nnoremap <silent> <m-k> :5winc -<CR>
-
-" nnoremap <silent> <m-k> :resize -1<CR>
-" nnoremap <silent> <m-j> :resize +1<CR>
-" nnoremap <silent> <m-h> :call IntelligentVerticalResize('left')<CR>
-" nnoremap <silent> <m-l> :call IntelligentVerticalResize('right')<CR>
-
-" nnoremap <silent> <M-Up>    :resize +1<CR>
-" nnoremap <silent> <M-Down>  :resize -1<CR>
-" nnoremap <silent> <M-Left>  :call IntelligentVerticalResize('left')<CR>
-" nnoremap <silent> <M-Right> :call IntelligentVerticalResize('right')<CR>
-" 
-
-
 
 " Default to private GitHub gists
 let g:gist_post_private = 1
@@ -242,6 +201,7 @@ if executable('ag')
     let g:ctrlp_use_caching = 0
 endif
 
+" Enable emmet with leader key
 let g:user_emmet_install_global = 0
 autocmd FileType html,css,mustache,javascript EmmetInstall
 let g:user_emmet_leader_key=','
@@ -289,23 +249,6 @@ inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " "<C-h>, <BS>: close popup and delete backword char.
 inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-" Close popup by <Space>.
-" inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
-
-" AutoComplPop like behavior.
-" let g:neocomplete#enable_auto_select = 1
-
-" Shell like behavior(not recommended).
-"set completeopt+=longest
-" let g:neocomplete#enable_auto_select = 1
-" let g:neocomplete#disable_auto_complete = 1
-" inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
-
-" Enable omni completion.
-" Plugin key-mappings.
-" imap <C-k>     <Plug>(neosnippet_expand)
-"smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-"xmap <C-k>     <Plug>(neosnippet_expand_target)
 
 " SuperTab like snippets behavior.
 imap <expr><TAB>
@@ -317,7 +260,7 @@ imap <expr><TAB>
 
 let g:jsx_ext_required = 0
 
-" Git
+" Git fugitive plugin mappings
 nnoremap <leader>gc :Gcommit<CR>
 nnoremap <leader>gp :Gpush<CR>
 nnoremap <leader>gs :Gstatus<CR>
@@ -326,7 +269,7 @@ nnoremap <leader>gl :Gpull<CR>
 
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType html setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType html setlocal omnifunc=htmlcomplete#ComackpleteTags
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 autocmd FileType go setlocal omnifunc=go#complete#Complete
@@ -352,8 +295,13 @@ augroup reload_vimrc " {
     autocmd BufWritePost $MYVIMRC source $MYVIMRC
 augroup END " }
 
-
-
+" Don't clutter current directory with Vim tmp-files
 set backupdir=~/vimtmp,.
 set directory=~/vimtmp,.
+
+" Enable persistent undo
+set undofile
+set undodir=~/vimundo
+set undolevels=1000
+set undoreload=10000
 
