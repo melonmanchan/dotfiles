@@ -32,6 +32,7 @@ Plugin 'mattn/gist-vim'
 Plugin 'mattn/emmet-vim'
 Plugin 'alvan/vim-closetag'
 Plugin 'sheerun/vim-polyglot'
+Plugin 'editorconfig/editorconfig-vim'
 Plugin 'othree/csscomplete.vim'
 Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-endwise'
@@ -66,6 +67,8 @@ set tabstop=4
 set shiftwidth:4
 set expandtab
 set smarttab
+
+" Show different commad options
 set wildmenu
 " Show commands as you're typing 'em
 set showcmd
@@ -305,3 +308,5 @@ set undodir=~/vimundo
 set undolevels=1000
 set undoreload=10000
 
+" Make editorconfig play nice with git-fugitive
+let g:EditorConfig_exclude_patterns = ['fugitive://.*']
