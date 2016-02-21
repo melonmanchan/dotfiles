@@ -252,6 +252,11 @@ in `dotspacemacs/user-config'."
   (define-key evil-normal-state-map (kbd "C-j") 'evil-window-up)
   (define-key evil-normal-state-map (kbd "C-k") 'evil-window-down)
   (define-key evil-normal-state-map (kbd "C-l") 'evil-window-right)
+
+  (define-key evil-normal-state-map (kbd "M-h") 'evil-window-decrease-width)
+  (define-key evil-normal-state-map (kbd "M-j") 'evil-window-decrease-height)
+  (define-key evil-normal-state-map (kbd "M-k") 'evil-window-increase-height)
+  (define-key evil-normal-state-map (kbd "M-l") 'evil-window-increase-width)
   "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
