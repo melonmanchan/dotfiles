@@ -54,6 +54,11 @@ call vundle#end()
 set encoding=utf-8
 set fileencoding=utf-8
 
+if has('gui_running')
+  set guifont=Hack\ 12
+endif
+
+
 let g:polyglot_disabled = ['css', 'scss']
 let g:tern_show_argument_hints='on_hold'
 filetype plugin indent on
