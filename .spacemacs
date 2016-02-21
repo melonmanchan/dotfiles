@@ -106,8 +106,8 @@ values."
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
-   dotspacemacs-default-font '("Source Code Pro"
-                               :size 25
+   dotspacemacs-default-font '("Hack"
+                               :size 14
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -247,6 +247,11 @@ in `dotspacemacs/user-config'."
   (global-set-key (kbd "C-q") 'evil-quit)
 
   (define-key evil-normal-state-map (kbd "SPC") 'evil-search-forward)
+
+  (define-key evil-normal-state-map (kbd "C-h") 'evil-window-left)
+  (define-key evil-normal-state-map (kbd "C-j") 'evil-window-up)
+  (define-key evil-normal-state-map (kbd "C-k") 'evil-window-down)
+  (define-key evil-normal-state-map (kbd "C-l") 'evil-window-right)
   "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
