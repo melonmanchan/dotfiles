@@ -7,6 +7,7 @@ cp .global_gitignore ~/.global_gitignore
 cp .tmux.conf        ~/.tmux.conf
 cp .gitconfig        ~/.gitconfig
 cp .ctags            ~/.ctags
+cp .spacemacs        ~/.spacemacs
 
 cp -r .config        ~/.config
 
