@@ -24,9 +24,11 @@ values."
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      auto-completion
-      better-defaults
+     better-defaults
      emacs-lisp
      git
+     (version-control :variables
+                       version-control-global-margin t)
      markdown
      org
      (shell :variables
@@ -35,6 +37,8 @@ values."
      spell-checking
      syntax-checking
      version-control
+     html
+     javascript
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -239,28 +243,37 @@ It is called immediately after `dotspacemacs/init'.  You are free to put almost
 any user code here.  The exception is org related code, which should be placed
 in `dotspacemacs/user-config'."
          (setq-default evil-escape-key-sequence "jk")
+         (setq-default dotspacemacs-themes '(monokai))
+         (setq-default git-magit-status-fullscreen t)
 )
 
 (defun dotspacemacs/user-config ()
-  (global-linum-mode)
-  (global-set-key (kbd "C-s") 'evil-save)
-  (global-set-key (kbd "C-q") 'evil-quit)
-
-  (define-key evil-normal-state-map (kbd "SPC") 'evil-search-forward)
-
-  (define-key evil-normal-state-map (kbd "C-h") 'evil-window-left)
-  (define-key evil-normal-state-map (kbd "C-j") 'evil-window-up)
-  (define-key evil-normal-state-map (kbd "C-k") 'evil-window-down)
-  (define-key evil-normal-state-map (kbd "C-l") 'evil-window-right)
-
-  (define-key evil-normal-state-map (kbd "M-h") 'evil-window-decrease-width)
-  (define-key evil-normal-state-map (kbd "M-j") 'evil-window-decrease-height)
-  (define-key evil-normal-state-map (kbd "M-k") 'evil-window-increase-height)
-  (define-key evil-normal-state-map (kbd "M-l") 'evil-window-increase-width)
   "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
-  )
+
+  (global-linum-mode)
+  (global-set-key (kbd "C-s") 'save-buffer)
+  (global-set-key (kbd "C-q") 'evil-quit)
+  (define-key evil-normal-state-map (kbd "C-z") 'undo)
+
+  ( define-key evil-normal-state-map (kbd "SPC") 'evil-search-forward)
+  ( define-key evil-evilified-state-map (kbd "SPC") 'evil-search-forward)
+
+  ( global-set-key (kbd "C-h") 'evil-window-left)
+  ( global-set-key (kbd "C-j") 'evil-window-up)
+  ( global-set-key (kbd "C-k") 'evil-window-down)
+  ( global-set-key (kbd "C-l") 'evil-window-right)
+
+  ( global-set-key (kbd "M-h") 'evil-window-decrease-width)
+  ( global-set-key (kbd "M-j") 'evil-window-decrease-height)
+  ( global-set-key (kbd "M-k") 'evil-window-increase-height)
+  ( global-set-key (kbd "M-l") 'evil-window-increase-width)
+
+  (spacemacs/set-leader-keys "." 'neotree-toggle)
+  (spacemacs/set-leader-keys "p" 'helm-projectile-find-file)
+
+)
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
