@@ -33,6 +33,7 @@ values."
      org
      (shell :variables
             shell-default-height 30
+            shell-default-term-shell "/usr/bin/fish"
             shell-default-position 'bottom)
      spell-checking
      syntax-checking
@@ -261,8 +262,8 @@ layers configuration. You are free to put any user code."
   ( define-key evil-evilified-state-map (kbd "SPC") 'evil-search-forward)
 
   ( global-set-key (kbd "C-h") 'evil-window-left)
-  ( global-set-key (kbd "C-j") 'evil-window-up)
-  ( global-set-key (kbd "C-k") 'evil-window-down)
+  ( global-set-key (kbd "C-j") 'evil-window-down)
+  ( global-set-key (kbd "C-k") 'evil-window-up)
   ( global-set-key (kbd "C-l") 'evil-window-right)
 
   ( global-set-key (kbd "M-h") 'evil-window-decrease-width)
@@ -272,6 +273,7 @@ layers configuration. You are free to put any user code."
 
   (spacemacs/set-leader-keys "." 'neotree-toggle)
   (spacemacs/set-leader-keys "p" 'helm-projectile-find-file)
+  (spacemacs/toggle-indent-guide-globally-on)
 
 )
 
