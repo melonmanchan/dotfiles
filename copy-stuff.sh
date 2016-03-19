@@ -1,13 +1,13 @@
 #!/usr/bin bash
-# Copy stuff to their proper folders!
+# Link stuff to their proper folders!
 
-cp .bash_aliases     ~/.bash_aliases
-cp .vimrc            ~/.vimrc
-cp .global_gitignore ~/.global_gitignore
-cp .tmux.conf        ~/.tmux.conf
-cp .gitconfig        ~/.gitconfig
-cp .ctags            ~/.ctags
-cp .spacemacs        ~/.spacemacs
+ln -s .bash_aliases     ~/.bash_aliases
+ln -s .vimrc            ~/.vimrc
+ln -s .global_gitignore ~/.global_gitignore
+ln -s .tmux.conf        ~/.tmux.conf
+ln -s .gitconfig        ~/.gitconfig
+ln -s .ctags            ~/.ctags
+ln -s .spacemacs        ~/.spacemacs
 
-cp -r .config        ~/.config
+ln -s .config        ~/.config
 
