@@ -53,6 +53,7 @@ call vundle#end()
 
 set encoding=utf-8
 set fileencoding=utf-8
+set nowrap
 
 if has('gui_running')
   set guifont=Hack\ 12
