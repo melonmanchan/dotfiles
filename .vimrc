@@ -31,6 +31,7 @@ Plugin 'mattn/webapi-vim'
 Plugin 'mattn/gist-vim'
 Plugin 'mattn/emmet-vim'
 Plugin 'alvan/vim-closetag'
+Plugin 'elixir-lang/vim-elixir'
 Plugin 'sheerun/vim-polyglot'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'othree/csscomplete.vim'
@@ -45,8 +46,9 @@ Plugin 'haya14busa/incsearch.vim'
 Plugin 'othree/jspc.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
-Bundle 'Blackrush/vim-gocode'
+Plugin 'fatih/vim-go'
 Plugin 'godlygeek/tabular'
+Plugin 'guns/vim-clojure-static'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'ryanoasis/vim-devicons'
 call vundle#end()
@@ -65,6 +67,9 @@ let g:tern_show_argument_hints='on_hold'
 filetype plugin indent on
 filetype plugin on
 au BufNewFile,BufRead *.handlebars set filetype=mustache
+
+au BufNewFile,BufRead *.ex set filetype=elixir
+au BufNewFile,BufRead *.exs set filetype=elixir
 
 set background=dark
 colorscheme solarized
