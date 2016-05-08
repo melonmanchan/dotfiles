@@ -47,15 +47,19 @@ Plugin 'othree/jspc.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Plugin 'fatih/vim-go'
+Plugin 'rust-lang/rust.vim'
 Plugin 'godlygeek/tabular'
 Plugin 'guns/vim-clojure-static'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'ryanoasis/vim-devicons'
 call vundle#end()
+filetype plugin indent on
+filetype plugin on
 
 set encoding=utf-8
 set fileencoding=utf-8
 set nowrap
+set sidescroll=1
 
 if has('gui_running')
   set guifont=Hack\ 12
@@ -64,8 +68,6 @@ endif
 
 let g:polyglot_disabled = ['css', 'scss']
 let g:tern_show_argument_hints='on_hold'
-filetype plugin indent on
-filetype plugin on
 au BufNewFile,BufRead *.handlebars set filetype=mustache
 
 au BufNewFile,BufRead *.ex set filetype=elixir
@@ -321,3 +323,7 @@ set undoreload=10000
 
 " Make editorconfig play nice with git-fugitive
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
+
+let g:rustfmt_autosave = 1
+au BufRead,BufNewFile *.rs set filetype=rust
+
