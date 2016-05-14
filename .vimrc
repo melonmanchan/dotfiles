@@ -51,7 +51,7 @@ Plugin 'rust-lang/rust.vim'
 Plugin 'godlygeek/tabular'
 Plugin 'guns/vim-clojure-static'
 Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'ryanoasis/vim-devicons'
+" Plugin 'ryanoasis/vim-devicons'
 call vundle#end()
 filetype plugin indent on
 filetype plugin on
@@ -91,19 +91,17 @@ let mapleader = ","
 
 autocmd FileType nerdtree setlocal nolist
 let NERDTreeShowHidden=1
-let g:WebDevIconsNerdTreeGitPluginForceVAlign = 0
-let g:WebDevIconsUnicodeGlyphDoubleWidth = 1
 
 let g:NERDTreeIndicatorMapCustom = {
-    \ "Modified"  : "✹ ",
-    \ "Staged"    : "✚ ",
-    \ "Untracked" : "✭ ",
-    \ "Renamed"   : "➜ ",
-    \ "Unmerged"  : "═ ",
-    \ "Deleted"   : "✖ ",
-    \ "Dirty"     : "✗ ",
-    \ "Clean"     : "✔︎ ",
-    \ "Unknown"   : "? "
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ "Unknown"   : "?"
     \ }
 
 map <leader>. :NERDTreeToggle<CR>
@@ -324,6 +322,5 @@ set undoreload=10000
 " Make editorconfig play nice with git-fugitive
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 
-let g:rustfmt_autosave = 1
 au BufRead,BufNewFile *.rs set filetype=rust
 
