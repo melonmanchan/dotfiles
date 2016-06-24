@@ -106,6 +106,8 @@ let g:NERDTreeIndicatorMapCustom = {
 
 map <leader>. :NERDTreeToggle<CR>
 
+nnoremap K {
+nnoremap J }
 
 " Show tabs as a character
 let g:indentLine_enabled = 1
