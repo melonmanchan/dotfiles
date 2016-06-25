@@ -109,6 +109,9 @@ map <leader>. :NERDTreeToggle<CR>
 nnoremap K {
 nnoremap J }
 
+vnoremap K {
+vnoremap J }
+
 " Show tabs as a character
 let g:indentLine_enabled = 1
 let g:indentLine_color_term = 239
