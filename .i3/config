@@ -186,7 +186,7 @@ bindsym $mod+d exec rofi -show run -lines 6 -eh 2 -width 100 -padding 800 -opaci
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-    status_command i3blocks -c  /home/matti/.i3/i3blocks.conf
+    status_command i3blocks -c  ~/.i3/i3blocks.conf
     font pango:Hack 12
     colors {
         separator $base03
@@ -200,12 +200,13 @@ bar {
     }
 }
 
-bindsym $mod+u exec sh /home/matti/keyboardtoggle.sh
+bindsym $mod+u exec sh  ~/.i3/keyboardtoggle.sh
 
 # No topbar
 new_window 1pixel
 
-exec --no-startup-id xsetroot -solid "#073642"
-exec --no-startup-id xrdb /home/matti/.Xresources
 exec --no-startup-id nm-applet
+exec --no-startup-id xsetroot -solid "#073642"
+exec --no-startup-id xrdb ~/.Xresources
 exec --no-startup-id compton -f -D 4 -I 0.03 -O 0.03
+exec --no-startup-id redshift
