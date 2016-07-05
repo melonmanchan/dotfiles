@@ -51,6 +51,7 @@ Plugin 'rust-lang/rust.vim'
 Plugin 'godlygeek/tabular'
 Plugin 'guns/vim-clojure-static'
 Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'justinmk/vim-sneak'
 " Plugin 'ryanoasis/vim-devicons'
 call vundle#end()
 filetype plugin indent on
@@ -323,6 +324,8 @@ set undofile
 set undodir=~/vimundo
 set undolevels=1000
 set undoreload=10000
+
+let g:sneak#s_next = 1
 
 " Make editorconfig play nice with git-fugitive
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
