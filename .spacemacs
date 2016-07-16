@@ -26,6 +26,8 @@ values."
      auto-completion
      better-defaults
      emacs-lisp
+     eyebrowse
+     themes-megapack
      git
      (version-control :variables
                        version-control-global-margin t)
@@ -39,6 +41,7 @@ values."
      syntax-checking
      version-control
      html
+     games
      javascript
      )
    ;; List of additional packages that will be installed without being
@@ -68,7 +71,7 @@ values."
    ;; This variable has no effect if Emacs is launched with the parameter
    ;; `--insecure' which forces the value of this variable to nil.
    ;; (default t)
-   dotspacemacs-elpa-https t
+   dotspacemacs-elpa-https nil
    ;; Maximum allowed time in seconds to contact an ELPA repository.
    dotspacemacs-elpa-timeout 5
    ;; If non nil then spacemacs will check for updates at startup
@@ -100,13 +103,11 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(spacemacs-dark
-                         spacemacs-light
-                         solarized-light
-                         solarized-dark
-                         leuven
+   dotspacemacs-themes '(
                          monokai
-                         zenburn)
+                         sanityinc-solarized-dark
+                         sanityinc-solarized-light
+                         )
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
@@ -117,7 +118,7 @@ values."
                                :width normal
                                :powerline-scale 1.1)
    ;; The leader key
-   dotspacemacs-leader-key ","
+   dotspacemacs-leader-key "<SPC>"
    ;; The leader key accessible in `emacs state' and `insert state'
    ;; (default "M-m")
    dotspacemacs-emacs-leader-key "M-m"
@@ -244,7 +245,6 @@ It is called immediately after `dotspacemacs/init'.  You are free to put almost
 any user code here.  The exception is org related code, which should be placed
 in `dotspacemacs/user-config'."
          (setq-default evil-escape-key-sequence "jk")
-         (setq-default dotspacemacs-themes '(monokai))
          (setq-default git-magit-status-fullscreen t)
 )
 
@@ -258,8 +258,8 @@ layers configuration. You are free to put any user code."
   (global-set-key (kbd "C-q") 'evil-quit)
   (define-key evil-normal-state-map (kbd "C-z") 'undo)
 
-  ( define-key evil-normal-state-map (kbd "SPC") 'evil-search-forward)
-  ( define-key evil-evilified-state-map (kbd "SPC") 'evil-search-forward)
+  ( define-key evil-normal-state-map (kbd "/") 'evil-search-forward)
+  ( define-key evil-evilified-state-map (kbd "/") 'evil-search-forward)
 
   ( global-set-key (kbd "C-h") 'evil-window-left)
   ( global-set-key (kbd "C-j") 'evil-window-down)
