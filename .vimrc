@@ -86,6 +86,12 @@ set wildmenu
 " Show commands as you're typing 'em
 set showcmd
 
+" Make thing fast!
+set ttyfast
+
+" Try out relativenumber
+set relativenumber
+
 " Space as mapleader
 let mapleader = ","
 
