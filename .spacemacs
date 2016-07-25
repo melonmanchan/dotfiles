@@ -25,8 +25,10 @@ values."
      ;; ----------------------------------------------------------------
      auto-completion
      better-defaults
+     python
      emacs-lisp
-     eyebrowse
+     (eyebrowse :variables
+                eyebrowse-display-help nil)
      themes-megapack
      git
      (version-control :variables
@@ -48,7 +50,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(ox-twbs)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -113,10 +115,10 @@ values."
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
    dotspacemacs-default-font '("Hack"
-                               :size 14
+                               :size 15
                                :weight normal
                                :width normal
-                               :powerline-scale 1.1)
+                               :powerline-scale 1.4)
    ;; The leader key
    dotspacemacs-leader-key "<SPC>"
    ;; The leader key accessible in `emacs state' and `insert state'
@@ -172,7 +174,7 @@ values."
    dotspacemacs-helm-position 'bottom
    ;; If non nil the paste micro-state is enabled. When enabled pressing `p`
    ;; several times cycle between the kill ring content. (default nil)
-   dotspacemacs-enable-paste-micro-state nil
+   dotspacemacs-enable-paste-micro-state t
    ;; Which-key delay in seconds. The which-key buffer is the popup listing
    ;; the commands bound to the current keystroke sequence. (default 0.4)
    dotspacemacs-which-key-delay 0.4
@@ -275,6 +277,9 @@ layers configuration. You are free to put any user code."
   (spacemacs/set-leader-keys "p" 'helm-projectile-find-file)
   (spacemacs/toggle-indent-guide-globally-on)
 
+  ;; ORG-stuff here
+
+  (setq org-src-tab-acts-natively t)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
