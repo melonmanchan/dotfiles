@@ -50,8 +50,7 @@ Plugin 'rust-lang/rust.vim'
 Plugin 'godlygeek/tabular'
 Plugin 'guns/vim-clojure-static'
 Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'justinmk/vim-sneak'
-" Plugin 'ryanoasis/vim-devicons'
+Plugin 'szw/vim-maximizer'
 call vundle#end()
 filetype plugin indent on
 filetype plugin on
@@ -65,6 +64,8 @@ if has('gui_running')
   set guifont=Hack\ 12
 endif
 
+
+let g:maximizer_default_mapping_key = '<C-F>'
 
 let g:polyglot_disabled = ['css', 'scss']
 let g:tern_show_argument_hints='on_hold'
@@ -89,9 +90,6 @@ set showcmd
 " Make thing fast!
 set ttyfast
 
-" Try out relativenumber
-set relativenumber
-
 " Space as mapleader
 let mapleader = ","
 
@@ -104,8 +102,6 @@ endif
 if exists('$TMUX')
     let &t_SI = "\<Esc>Ptmux;\<Esc>\e[6 q\<Esc>\\"
     let &t_EI = "\<Esc>Ptmux;\<Esc>\e[2 q\<Esc>\\"
-    "  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-    "  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
 endif
 
 autocmd FileType nerdtree setlocal nolist
@@ -342,8 +338,6 @@ set undofile
 set undodir=~/vimundo
 set undolevels=1000
 set undoreload=10000
-
-let g:sneak#s_next = 1
 
 " Make editorconfig play nice with git-fugitive
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
