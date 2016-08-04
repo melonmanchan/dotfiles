@@ -51,9 +51,12 @@ Plugin 'godlygeek/tabular'
 Plugin 'guns/vim-clojure-static'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'szw/vim-maximizer'
+Plugin 'mileszs/ack.vim'
 call vundle#end()
 filetype plugin indent on
 filetype plugin on
+
+runtime macros/matchit.vim
 
 set encoding=utf-8
 set fileencoding=utf-8
@@ -91,7 +94,7 @@ set showcmd
 set ttyfast
 
 " Space as mapleader
-let mapleader = ","
+let mapleader = " "
 
 " Use a blinking upright bar cursor in Insert mode, a blinking block in normal
 if &term == 'xterm-256color' || &term == 'screen-256color'
@@ -154,6 +157,10 @@ imap JK <Esc>
 set hlsearch
 set incsearch
 
+" Don't open vim.ack first result in window
+cnoreabbrev Ack Ack!
+nnoremap <leader>/ :Ack!<Space>
+
 " incsearch plugin mappings, enable highlighting etc
 let g:incsearch#auto_nohlsearch = 1
 map n  <Plug>(incsearch-nohl-n)
@@ -165,8 +172,6 @@ map g# <Plug>(incsearch-nohl-g#)
 
 map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
-map <space>  <Plug>(incsearch-forward)
-map <c-space>  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
 
 autocmd InsertEnter * :set nohlsearch
@@ -230,7 +235,10 @@ let g:ctrlp_custom_ignore = 'node_modules\|git\|www\|platforms\|plugins'
 
 " Use silver searcher if available
 if executable('ag')
-    set grepprg=ag\ --nogroup\ --nocolor
+    set grepprg=ag\ --nogroup\ --nocolor\ --column
+    set grepformat=%f:%l:%c%m
+
+    let g:ackprg = 'ag --vimgrep'
     let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
     let g:ctrlp_use_caching = 0
 endif
