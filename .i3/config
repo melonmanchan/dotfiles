@@ -9,7 +9,6 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
-
 set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -32,7 +31,7 @@ font pango:Hack 11
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal -e /usr/bin/fish
+bindsym $mod+Return exec urxvt -e /usr/bin/fish
 
 # kill focused window
 bindsym $mod+q kill
@@ -143,7 +142,7 @@ mode "resize" {
         bindsym h resize shrink width 10 px or 10 ppt
         bindsym j resize grow height 10 px or 10 ppt
         bindsym k resize shrink height 10 px or 10 ppt
-        bindslm l resize grow width 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
@@ -184,7 +183,7 @@ client.unfocused        $base02 $base02    $base03 $base0F
 client.urgent           $base02 $base08    $base00 $base0F
 
 hide_edge_borders both
-bindsym $mod+d exec rofi -show run -lines 6 -eh 2 -width 100 -padding 800 -opacity "85" -bw 0 -bc "$base01" -bg "$base01" -fg "$base07" -hlbg "$base01" -hlfg "#9575cd" -font "Hack 18"
+bindsym $mod+d exec rofi -show run -lines 6 -eh 2 -width 100 -padding 400 -opacity "85" -bw 0 -bc "$base01" -bg "$base01" -fg "$base07" -hlbg "$base01" -hlfg "#9575cd" -font "Hack 18"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -203,8 +202,9 @@ bar {
     }
 }
 
-bindsym $mod+u exec sh  ~/.i3/keyboardtoggle.sh
-bindsym $mod+t exec sh  ~/.i3/toggle-touchpad.sh
+bindsym $mod+u exec sh ~/.i3/keyboardtoggle.sh
+bindsym $mod+t exec sh ~/.i3/toggle-touchpad.sh
+bindsym $mod+b exec sh ~/.i3/toggle-i3bar.sh
 
 # No topbar
 new_window none
