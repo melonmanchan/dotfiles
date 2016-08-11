@@ -1,8 +1,9 @@
-URxvt.font: xft:Knack:size=14
+URxvt.font: xft:Knack:size=12
 URxvt.scrollBar: false
 URxvt*termName: screen-256color
-URxvt.perl-ext-common: fullscreen
-URxvt.keysym.F11: perl:fullscreen:switch
+URxvt.letterSpace: -1
+URxvt.iso14755: true
+URxvt.iso14755_52: false
 
 #define S_base03        #002b36
 #define S_base02        #073642
