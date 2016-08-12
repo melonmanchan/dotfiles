@@ -27,7 +27,6 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'dkprice/vim-easygrep'
 Plugin 'ap/vim-css-color'
 Plugin 'mattn/webapi-vim'
-Plugin 'mattn/gist-vim'
 Plugin 'mattn/emmet-vim'
 Plugin 'alvan/vim-closetag'
 Plugin 'elixir-lang/vim-elixir'
@@ -44,11 +43,9 @@ Plugin 'jelera/vim-javascript-syntax'
 Plugin 'haya14busa/incsearch.vim'
 Plugin 'othree/jspc.vim'
 Plugin 'pangloss/vim-javascript'
-Plugin 'mxw/vim-jsx'
 Plugin 'fatih/vim-go'
 Plugin 'rust-lang/rust.vim'
 Plugin 'godlygeek/tabular'
-Plugin 'guns/vim-clojure-static'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'szw/vim-maximizer'
 Plugin 'mileszs/ack.vim'
@@ -62,6 +59,7 @@ set encoding=utf-8
 set fileencoding=utf-8
 set nowrap
 set sidescroll=1
+" set termguicolors
 
 if has('gui_running')
   set guifont=Hack\ 12
