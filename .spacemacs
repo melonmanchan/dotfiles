@@ -260,8 +260,8 @@ layers configuration. You are free to put any user code."
   (global-set-key (kbd "C-q") 'evil-quit)
   (define-key evil-normal-state-map (kbd "C-z") 'undo)
 
-  ( define-key evil-normal-state-map (kbd "/") 'evil-search-forward)
-  ( define-key evil-evilified-state-map (kbd "/") 'evil-search-forward)
+  ( define-key evil-normal-state-map (kbd "J") 'evil-forward-paragraph)
+  ( define-key evil-normal-state-map (kbd "K") 'evil-backward-paragraph)
 
   ( global-set-key (kbd "C-h") 'evil-window-left)
   ( global-set-key (kbd "C-j") 'evil-window-down)
