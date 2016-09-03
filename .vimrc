@@ -89,6 +89,7 @@ set showcmd
 
 " Make thing fast!
 set ttyfast
+set lazyredraw
 
 " Space as mapleader
 let mapleader = " "
