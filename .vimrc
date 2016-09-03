@@ -321,11 +321,7 @@ autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 autocmd FileType go setlocal omnifunc=go#complete#Complete
 
-let g:neocomplete#sources#omni#functions = {'go': 'go#complete#Complete'}
-
-if !exists('g:neocomplete#sources#omni#input_patterns')
-"   let g:neocomplete#sources#omni#input_patterns = {}
-endif
+let g:go_fmt_command = "goimports"
 
 " Hack for Alt + arrow keys to work in tmux
 if &term =~ '^screen'
