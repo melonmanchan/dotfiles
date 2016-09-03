@@ -307,8 +307,6 @@ imap <expr><TAB>
  smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
  \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
-let g:jsx_ext_required = 0
-
 " Git fugitive plugin mappings
 nnoremap <leader>gc :Gcommit<CR>
 nnoremap <leader>gp :Gpush<CR>
