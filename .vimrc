@@ -36,10 +36,11 @@ Plugin 'othree/csscomplete.vim'
 Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-surround'
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'jelera/vim-javascript-syntax'
 Plugin 'haya14busa/incsearch.vim'
+Plugin 'othree/yajs.vim'
+" Plugin 'maxmellon/vim-jsx-pretty'
+Plugin 'jelera/vim-javascript-syntax'
 Plugin 'othree/jspc.vim'
-Plugin 'pangloss/vim-javascript'
 Plugin 'fatih/vim-go'
 Plugin 'rust-lang/rust.vim'
 Plugin 'guns/vim-clojure-static'
@@ -57,17 +58,15 @@ set encoding=utf-8
 set fileencoding=utf-8
 set nowrap
 set sidescroll=1
-" set termguicolors
 
 if has('gui_running')
   set guifont=Hack\ 12
 endif
 
-
 let g:maximizer_default_mapping_key = '<C-F>'
-
-let g:polyglot_disabled = ['css', 'scss']
+let g:polyglot_disabled = ['css', 'scss', 'javascript']
 let g:tern_show_argument_hints='on_hold'
+
 au BufNewFile,BufRead *.handlebars set filetype=mustache
 
 au BufNewFile,BufRead *.ex set filetype=elixir
