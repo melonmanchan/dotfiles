@@ -24,31 +24,30 @@ Plugin 'flazz/vim-colorschemes'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
-Plugin 'dkprice/vim-easygrep'
 Plugin 'ap/vim-css-color'
 Plugin 'mattn/webapi-vim'
+Plugin 'mattn/gist-vim'
 Plugin 'mattn/emmet-vim'
 Plugin 'alvan/vim-closetag'
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'sheerun/vim-polyglot'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'othree/csscomplete.vim'
-Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-surround'
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'tomasr/molokai'
-Plugin 'bronson/vim-visual-star-search'
-Plugin 'jelera/vim-javascript-syntax'
 Plugin 'haya14busa/incsearch.vim'
+Plugin 'othree/yajs.vim'
+" Plugin 'maxmellon/vim-jsx-pretty'
+Plugin 'jelera/vim-javascript-syntax'
 Plugin 'othree/jspc.vim'
-Plugin 'pangloss/vim-javascript'
 Plugin 'fatih/vim-go'
 Plugin 'rust-lang/rust.vim'
-Plugin 'godlygeek/tabular'
+Plugin 'guns/vim-clojure-static'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'szw/vim-maximizer'
 Plugin 'mileszs/ack.vim'
+Plugin 'godlygeek/tabular'
 call vundle#end()
 filetype plugin indent on
 filetype plugin on
@@ -60,17 +59,15 @@ set encoding=utf-8
 set fileencoding=utf-8
 set nowrap
 set sidescroll=1
-" set termguicolors
 
 if has('gui_running')
   set guifont=Hack\ 12
 endif
 
-
 let g:maximizer_default_mapping_key = '<C-F>'
-
-let g:polyglot_disabled = ['css', 'scss']
+let g:polyglot_disabled = ['css', 'scss', 'javascript']
 let g:tern_show_argument_hints='on_hold'
+
 au BufNewFile,BufRead *.handlebars set filetype=mustache
 
 au BufNewFile,BufRead *.ex set filetype=elixir
@@ -91,6 +88,7 @@ set showcmd
 
 " Make thing fast!
 set ttyfast
+set lazyredraw
 
 " Space as mapleader
 let mapleader = " "
@@ -201,11 +199,20 @@ set statusline+=%*
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+let g:syntastic_check_on_wq = 1
 let g:syntastic_javascript_checkers = ['eslint']
 
 let g:syntastic_css_checkers = ['csslint']
 let g:syntastic_scss_checkers = ['sass']
+let g:syntastic_go_checkers = ['golint', 'go', 'govet', 'errcheck']
+
+" Golang syntax highlighting
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_fields = 0
+let g:go_highlight_types = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
 
 " Airline fonts
 let g:airline_powerline_fonts = 1
@@ -299,8 +306,6 @@ imap <expr><TAB>
  smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
  \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
-let g:jsx_ext_required = 0
-
 " Git fugitive plugin mappings
 nnoremap <leader>gc :Gcommit<CR>
 nnoremap <leader>gp :Gpush<CR>
@@ -315,11 +320,7 @@ autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 autocmd FileType go setlocal omnifunc=go#complete#Complete
 
-let g:neocomplete#sources#omni#functions = {'go': 'go#complete#Complete'}
-
-if !exists('g:neocomplete#sources#omni#input_patterns')
-"   let g:neocomplete#sources#omni#input_patterns = {}
-endif
+let g:go_fmt_command = "goimports"
 
 " Hack for Alt + arrow keys to work in tmux
 if &term =~ '^screen'
