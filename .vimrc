@@ -53,6 +53,7 @@ call vundle#end()
 filetype plugin indent on
 filetype plugin on
 
+set t_ut=
 runtime macros/matchit.vim
 
 set encoding=utf-8
@@ -328,6 +329,9 @@ if &term =~ '^screen'
     execute "set <xRight>=\e[1;*C"
     execute "set <xLeft>=\e[1;*D"
 endif
+
+" Sync unnamed clipboard to system clipboard
+set clipboard^=unnamed
 
 " Autoreload vim on changes to .vimrc
 augroup reload_vimrc " {
