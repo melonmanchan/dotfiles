@@ -5,6 +5,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
+Plugin 'neomake/neomake'
 Plugin 'Ternjs/tern_for_vim'
 Plugin 'Shougo/neocomplete'
 Plugin 'Shougo/neosnippet'
@@ -12,7 +13,6 @@ Plugin 'melonmanchan/vim-tmux-resizer'
 Plugin 'Shougo/neosnippet-snippets'
 Plugin 'ConradIrwin/vim-bracketed-paste'
 Plugin 'Raimondi/delimitMate'
-Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'ctrlpvim/ctrlp.vim'
@@ -190,29 +190,6 @@ inoremap <C-Q> <C-O>:q!<CR>
 noremap <silent> <C-z>          :u<CR>
 vnoremap <silent> <C-z>         :u<CR>
 inoremap <silent> <C-z>         <C-O>u
-
-" Syntastic statusline stuff
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 1
-let g:syntastic_javascript_checkers = ['eslint']
-
-let g:syntastic_css_checkers = ['csslint']
-let g:syntastic_scss_checkers = ['sass']
-let g:syntastic_go_checkers = ['golint', 'go', 'govet', 'errcheck']
-
-" Golang syntax highlighting
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_fields = 0
-let g:go_highlight_types = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1
 
 " Airline fonts
 let g:airline_powerline_fonts = 1
