@@ -33,5 +33,6 @@ sudo cp -fr runtime/* /usr/share/vim/vim74/
 
 mkdir ~/vimtmp
 
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-vim -c VundleUpdate -c quitall
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
