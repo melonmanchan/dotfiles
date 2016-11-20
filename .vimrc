@@ -15,7 +15,6 @@ Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'cakebaker/scss-syntax.vim'
-Plug 'Yggdroot/indentLine'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
@@ -49,7 +48,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'bling/vim-airline'
 Plug 'jacoborus/tender.vim'
 call plug#end()
-filetype plugin indent on
+filetype plugin on
 filetype plugin on
 
 set t_ut=
@@ -131,11 +130,6 @@ nnoremap J }
 
 vnoremap K {
 vnoremap J }
-
-" Show tabs as a character
-let g:indentLine_enabled = 1
-let g:indentLine_color_term = 239
-let g:indentLine_char = '┆'
 
 " Mousemode on!
 set mouse=a
