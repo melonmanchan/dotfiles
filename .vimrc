@@ -51,6 +51,7 @@ call plug#end()
 filetype plugin on
 filetype plugin on
 
+set nomodeline
 set t_ut=
 runtime macros/matchit.vim
 
