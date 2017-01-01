@@ -11,7 +11,7 @@ Plug 'melonmanchan/vim-tmux-resizer'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'Raimondi/delimitMate'
-Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'cakebaker/scss-syntax.vim'
