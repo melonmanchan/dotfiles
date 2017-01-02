@@ -4,12 +4,11 @@ set -e
 sudo apt-get remove  --yes --purge vim vim-runtime vim-gnome vim-tiny vim-common vim-gui-common
 sudo apt-get --yes --force-yes install gcc make ncurses-dev liblua5.1-dev luajit libluajit-5.1 python-dev ruby-dev libperl-dev mercurial libncurses5-dev libgnome2-dev libgnomeui-dev libgtk2.0-dev libatk1.0-dev libbonoboui2-dev libcairo2-dev libx11-dev libxpm-dev libxt-dev
 
-sudo mkdir /usr/include/lua5.1/include
+sudo mkdir -p /usr/include/lua5.1/include
 sudo ln -s /usr/include/luajit-2.0 /usr/include/lua5.1/include
 cd ~
 git clone --depth=1 https://github.com/vim/vim.git
-cd vim/src
-make distclean
+cd vim
 ./configure --with-features=huge \
             --enable-rubyinterp \
             --enable-largefile \
@@ -22,15 +21,9 @@ make distclean
             --enable-gui=auto \
             --enable-fail-if-missing \
             --with-lua-prefix=/usr/include/lua5.1 \
-            --enable-cscope 
-make 
-
+            --enable-cscope
+make
 sudo make install
-
-cd ..
-sudo mkdir /usr/share/vim
-sudo mkdir /usr/share/vim/vim74
-sudo cp -fr runtime/* /usr/share/vim/vim74/
 
 mkdir ~/vimtmp
 
