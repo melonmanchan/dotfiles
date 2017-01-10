@@ -98,11 +98,9 @@ if exists('$TMUX')
     let &t_SI = "\<Esc>Ptmux;\<Esc>\e[6 q\<Esc>\\"
     let &t_EI = "\<Esc>Ptmux;\<Esc>\e[2 q\<Esc>\\"
 endif
+
 " Always neomake
 autocmd! BufWritePost * Neomake
-
-let g:neomake_open_list = 2
-let g:neomake_verbose = 3
 
 nnoremap K {
 nnoremap J }
