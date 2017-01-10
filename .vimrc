@@ -45,7 +45,6 @@ Plug 'bling/vim-airline'
 Plug 'jacoborus/tender.vim'
 call plug#end()
 filetype plugin on
-filetype plugin on
 
 set nomodeline
 set t_ut=
