@@ -10,8 +10,6 @@ Plug 'Shougo/neosnippet'
 Plug 'melonmanchan/vim-tmux-resizer'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'Raimondi/delimitMate'
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'ntpeters/vim-better-whitespace'
@@ -107,23 +105,6 @@ autocmd! BufWritePost * Neomake
 let g:neomake_open_list = 2
 let g:neomake_verbose = 3
 
-autocmd FileType nerdtree setlocal nolist
-let NERDTreeShowHidden=1
-
-let g:NERDTreeIndicatorMapCustom = {
-    \ "Modified"  : "✹",
-    \ "Staged"    : "✚",
-    \ "Untracked" : "✭",
-    \ "Renamed"   : "➜",
-    \ "Unmerged"  : "═",
-    \ "Deleted"   : "✖",
-    \ "Dirty"     : "✗",
-    \ "Clean"     : "✔︎",
-    \ "Unknown"   : "?"
-    \ }
-
-map <leader>. :NERDTreeToggle<CR>
-
 nnoremap K {
 nnoremap J }
 
@@ -203,9 +184,6 @@ endw
 
 set timeoutlen=1000
 set ttimeoutlen=0
-
-" Default to private GitHub gists
-let g:gist_post_private = 1
 
 " Set up CtrlP related stuff, ignore git folders and nodejs node_modules in
 " results
