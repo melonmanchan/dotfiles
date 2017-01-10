@@ -156,20 +156,6 @@ autocmd InsertEnter * :set nohlsearch
 vnoremap > >gv
 vnoremap < <gv
 
-" Ctrl-S as save
-noremap <silent> <C-S>          :update<CR>
-vnoremap <silent> <C-S>         <C-C>:update<CR>
-inoremap <silent> <C-S>         <C-O>:update<CR>
-
-" And Ctrl-Q as quit
-noremap <C-Q> <C-O>:q!<CR>
-inoremap <C-Q> <C-O>:q!<CR>
-:nmap <C-Q> :q!<CR>
-
-noremap <silent> <C-z>          :u<CR>
-vnoremap <silent> <C-z>         :u<CR>
-inoremap <silent> <C-z>         <C-O>u
-
 " Airline fonts
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'solarized'
