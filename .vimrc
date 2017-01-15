@@ -19,15 +19,12 @@ Plug 'ap/vim-css-color'
 Plug 'mattn/webapi-vim'
 Plug 'mattn/emmet-vim'
 Plug 'alvan/vim-closetag'
-Plug 'elixir-lang/vim-elixir'
 Plug 'sheerun/vim-polyglot'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'othree/csscomplete.vim'
-Plug 'tpope/vim-rails'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-surround'
-Plug 'frankier/neovim-colors-solarized-truecolor-only'
-Plug 'tomasr/molokai'
+Plug 'altercation/vim-colors-solarized'
 Plug 'bronson/vim-visual-star-search'
 Plug 'jelera/vim-javascript-syntax'
 Plug 'haya14busa/incsearch.vim'
@@ -35,14 +32,13 @@ Plug 'othree/jspc.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'fatih/vim-go'
 Plug 'rust-lang/rust.vim'
+Plug 'posva/vim-vue'
 Plug 'godlygeek/tabular'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'szw/vim-maximizer'
 Plug 'mileszs/ack.vim'
-Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'bling/vim-airline'
-Plug 'jacoborus/tender.vim'
 call plug#end()
 filetype plugin on
 
@@ -70,6 +66,7 @@ au BufNewFile,BufRead *.exs set filetype=elixir
 
 set background=dark
 colorscheme solarized
+
 " Tabs as 4 spaces
 set tabstop=4
 set shiftwidth:4
@@ -290,4 +287,4 @@ set undoreload=10000
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 
 au BufRead,BufNewFile *.rs set filetype=rust
-
+autocmd BufEnter * :syntax sync fromstart
