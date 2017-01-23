@@ -14,7 +14,6 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'airblade/vim-gitgutter'
-Plug 'tpope/vim-fugitive'
 Plug 'ap/vim-css-color'
 Plug 'mattn/webapi-vim'
 Plug 'mattn/emmet-vim'
@@ -39,6 +38,7 @@ Plug 'szw/vim-maximizer'
 Plug 'mileszs/ack.vim'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'bling/vim-airline'
+Plug 'davidhalter/jedi-vim'
 call plug#end()
 filetype plugin on
 
@@ -184,7 +184,7 @@ endif
 
 " Enable emmet with leader key
 let g:user_emmet_install_global = 0
-autocmd FileType html,css,mustache,javascript EmmetInstall
+autocmd FileType html,css,mustache,javascript,htmldjango,vue EmmetInstall
 let g:user_emmet_leader_key=','
 
 let g:acp_enableAtStartup = 0
@@ -239,21 +239,31 @@ imap <expr><TAB>
  smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
  \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
-" Git fugitive plugin mappings
-nnoremap <leader>gc :Gcommit<CR>
-nnoremap <leader>gp :Gpush<CR>
-nnoremap <leader>gs :Gstatus<CR>
-nnoremap <leader>gd :Gvdiff<CR>
-nnoremap <leader>gl :Gpull<CR>
-
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType html setlocal omnifunc=htmlcomplete#ComackpleteTags
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 autocmd FileType go setlocal omnifunc=go#complete#Complete
+autocmd FileType python setlocal omnifunc=jedi#completions
 
 let g:go_fmt_command = "goimports"
+
+if !exists('g:neocomplete#sources#omni#input_patterns')
+   let g:neocomplete#sources#omni#input_patterns = {}
+endif
+
+if !exists('g:neocomplete#force_omni_input_patterns')
+    let g:neocomplete#force_omni_input_patterns = {}
+endif
+
+
+let g:jedi#completions_enabled = 0
+let g:jedi#auto_vim_configuration = 0
+let g:neocomplete#force_omni_input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
+let g:jedi#documentation_command = ''
+let g:jedi#show_call_signatures = 2
+
 
 " Hack for Alt + arrow keys to work in tmux
 if &term =~ '^screen'
@@ -265,7 +275,7 @@ if &term =~ '^screen'
 endif
 
 " Sync unnamed clipboard to system clipboard
-set clipboard^=unnamed
+set clipboard^=unnamedplus
 
 " Autoreload vim on changes to .vimrc
 augroup reload_vimrc " {
@@ -282,9 +292,6 @@ set undofile
 set undodir=~/vimundo
 set undolevels=1000
 set undoreload=10000
-
-" Make editorconfig play nice with git-fugitive
-let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 
 au BufRead,BufNewFile *.rs set filetype=rust
 autocmd BufEnter * :syntax sync fromstart
