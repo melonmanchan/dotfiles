@@ -51,18 +51,15 @@ set fileencoding=utf-8
 set nowrap
 set sidescroll=1
 
-if has('gui_running')
-  set guifont=Hack\ 12
-endif
-
 let g:maximizer_default_mapping_key = '<C-F>'
 let g:polyglot_disabled = ['css', 'scss', 'javascript']
 let g:tern_show_argument_hints='on_hold'
 
 au BufNewFile,BufRead *.handlebars set filetype=mustache
-
 au BufNewFile,BufRead *.ex set filetype=elixir
 au BufNewFile,BufRead *.exs set filetype=elixir
+au BufRead,BufNewFile *.rs set filetype=rust
+autocmd BufEnter * :syntax sync fromstart
 
 set background=dark
 colorscheme solarized
@@ -167,10 +164,10 @@ set ttimeoutlen=0
 
 " Set up CtrlP related stuff, ignore git folders and nodejs node_modules in
 " results
-let g:ctrlp_show_hidden = 1
+let g:ctrlp_show_hidden = 0
 let g:ctrlp_map = '<leader>p'
 let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_custom_ignore = 'node_modules\|git\|www\|platforms\|plugins'
+let g:ctrlp_custom_ignore = 'node_modules\|git\|www\|platforms\|plugins\|venv\|__pycache__\'
 
 " Use silver searcher if available
 if executable('ag')
@@ -275,7 +272,7 @@ if &term =~ '^screen'
 endif
 
 " Sync unnamed clipboard to system clipboard
-set clipboard^=unnamedplus
+set clipboard=unnamed
 
 " Autoreload vim on changes to .vimrc
 augroup reload_vimrc " {
@@ -293,5 +290,3 @@ set undodir=~/vimundo
 set undolevels=1000
 set undoreload=10000
 
-au BufRead,BufNewFile *.rs set filetype=rust
-autocmd BufEnter * :syntax sync fromstart
