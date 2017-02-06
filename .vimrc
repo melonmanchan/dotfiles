@@ -3,7 +3,9 @@ filetype off
 syntax on
 
 call plug#begin('~/.vim/plugged')
+Plug 'mhinz/vim-grepper'
 Plug 'neomake/neomake'
+Plug 'majutsushi/tagbar'
 Plug 'Ternjs/tern_for_vim'
 Plug 'Shougo/neocomplete'
 Plug 'Shougo/neosnippet'
@@ -35,7 +37,6 @@ Plug 'posva/vim-vue'
 Plug 'godlygeek/tabular'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'szw/vim-maximizer'
-Plug 'mileszs/ack.vim'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'bling/vim-airline'
 Plug 'davidhalter/jedi-vim'
@@ -74,6 +75,7 @@ set smarttab
 set wildmenu
 " Show commands as you're typing 'em
 set showcmd
+let g:tagbar_left = 1
 
 " Make thing fast!
 set ttyfast
@@ -124,9 +126,7 @@ imap JK <Esc>
 set hlsearch
 set incsearch
 
-" Don't open vim.ack first result in window
-cnoreabbrev Ack Ack!
-nnoremap <leader>/ :Ack!<Space>
+nnoremap <leader>/ :Grepper -tool ag<cr>
 
 " incsearch plugin mappings, enable highlighting etc
 let g:incsearch#auto_nohlsearch = 1
@@ -143,6 +143,7 @@ map g/ <Plug>(incsearch-stay)
 
 autocmd InsertEnter * :set nohlsearch
 
+nnoremap <leader>t :TagbarToggle<CR>
 " Reselect visual mode selection after shift
 vnoremap > >gv
 vnoremap < <gv
