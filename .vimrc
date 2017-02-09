@@ -40,6 +40,7 @@ Plug 'szw/vim-maximizer'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'bling/vim-airline'
 Plug 'davidhalter/jedi-vim'
+Plug 'racer-rust/vim-racer'
 call plug#end()
 filetype plugin on
 
@@ -61,7 +62,7 @@ au BufNewFile,BufRead *.ex set filetype=elixir
 au BufNewFile,BufRead *.exs set filetype=elixir
 au BufRead,BufNewFile *.rs set filetype=rust
 autocmd BufEnter * :syntax sync fromstart
-
+let g:racer_cmd = "/Users/mat/.cargo/bin/racer"
 set background=dark
 colorscheme solarized
 
@@ -223,8 +224,18 @@ function! s:my_cr_function()
   " For no inserting <CR> key.
     return pumvisible() ? "\<C-y>" : "\<CR>"
 endfunction
+
 " <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <silent><expr> <TAB>
+            \ pumvisible() ? "\<C-n>" :
+            \ <SID>check_back_space() ? "\<TAB>" :
+            \ neocomplete#start_manual_complete()
+
+function! s:check_back_space() abort "{{{
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~ '\s'
+endfunction"}}}
+
 " "<C-h>, <BS>: close popup and delete backword char.
 inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
