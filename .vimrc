@@ -12,7 +12,8 @@ Plug 'Shougo/neosnippet'
 Plug 'melonmanchan/vim-tmux-resizer'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'Raimondi/delimitMate'
-Plug 'ctrlpvim/ctrlp.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'airblade/vim-gitgutter'
@@ -85,6 +86,7 @@ set lazyredraw
 " Space as mapleader
 let mapleader = " "
 
+
 " Use a blinking upright bar cursor in Insert mode, a blinking block in normal
 if &term == 'xterm-256color' || &term == 'screen-256color'
     let &t_SI = "\<Esc>[6 q"
@@ -128,6 +130,8 @@ set hlsearch
 set incsearch
 
 nnoremap <leader>/ :Grepper -tool ag<cr>
+nnoremap <leader>p :GFiles <cr>
+nnoremap <leader>o :Files <cr>
 
 " incsearch plugin mappings, enable highlighting etc
 let g:incsearch#auto_nohlsearch = 1
@@ -163,23 +167,6 @@ endw
 
 set timeoutlen=1000
 set ttimeoutlen=0
-
-" Set up CtrlP related stuff, ignore git folders and nodejs node_modules in
-" results
-let g:ctrlp_show_hidden = 0
-let g:ctrlp_map = '<leader>p'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_custom_ignore = 'node_modules\|git\|www\|platforms\|plugins\|venv\|__pycache__\'
-
-" Use silver searcher if available
-if executable('ag')
-    set grepprg=ag\ --nogroup\ --nocolor\ --column
-    set grepformat=%f:%l:%c%m
-
-    let g:ackprg = 'ag --vimgrep'
-    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-    let g:ctrlp_use_caching = 0
-endif
 
 " Enable emmet with leader key
 let g:user_emmet_install_global = 0
@@ -224,18 +211,16 @@ function! s:my_cr_function()
   " For no inserting <CR> key.
     return pumvisible() ? "\<C-y>" : "\<CR>"
 endfunction
-
 " <TAB>: completion.
 inoremap <silent><expr> <TAB>
             \ pumvisible() ? "\<C-n>" :
             \ <SID>check_back_space() ? "\<TAB>" :
             \ neocomplete#start_manual_complete()
-
 function! s:check_back_space() abort "{{{
     let col = col('.') - 1
     return !col || getline('.')[col - 1]  =~ '\s'
 endfunction"}}}
-
+" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " "<C-h>, <BS>: close popup and delete backword char.
 inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
