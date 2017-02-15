@@ -133,6 +133,20 @@ nnoremap <leader>/ :Grepper -tool ag<cr>
 nnoremap <leader>p :GFiles <cr>
 nnoremap <leader>o :Files <cr>
 
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
+
 " incsearch plugin mappings, enable highlighting etc
 let g:incsearch#auto_nohlsearch = 1
 map n  <Plug>(incsearch-nohl-n)
@@ -278,12 +292,9 @@ augroup reload_vimrc " {
 augroup END " }
 
 " Don't clutter current directory with Vim tmp-files
-set backupdir=~/vimtmp,.
-set directory=~/vimtmp,.
+set backupdir=~/.vim/backup//
+set directory=~/.vim/swap//
+set undodir=~/.vim/undo//
 
-" Enable persistent undo
-set undofile
-set undodir=~/vimundo
 set undolevels=1000
 set undoreload=10000
-
