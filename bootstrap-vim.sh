@@ -25,5 +25,6 @@ cd vim
 make
 sudo make install
 
-mkdir ~/vimtmp
-
+mkdir -p ~/.vim/backup
+mkdir -p ~/.vim/swap
+mkdir -p ~/.vim/undo
