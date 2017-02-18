@@ -5,7 +5,6 @@ syntax on
 call plug#begin('~/.vim/plugged')
 Plug 'mhinz/vim-grepper'
 Plug 'neomake/neomake'
-Plug 'majutsushi/tagbar'
 Plug 'Ternjs/tern_for_vim'
 Plug 'Shougo/neocomplete'
 Plug 'Shougo/neosnippet'
@@ -14,6 +13,7 @@ Plug 'Shougo/neosnippet-snippets'
 Plug 'Raimondi/delimitMate'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'junegunn/goyo.vim'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'airblade/vim-gitgutter'
@@ -298,3 +298,22 @@ set undodir=~/.vim/undo//
 
 set undolevels=1000
 set undoreload=10000
+
+function! s:goyo_enter()
+  silent !tmux set status off
+  silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
+  set noshowmode
+  set noshowcmd
+  set scrolloff=999
+endfunction
+
+function! s:goyo_leave()
+  silent !tmux set status on
+  silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
+  set showmode
+  set showcmd
+  set scrolloff=5
+endfunction
+
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
