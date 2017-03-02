@@ -249,12 +249,13 @@ imap <expr><TAB>
 
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType html setlocal omnifunc=htmlcomplete#ComackpleteTags
+autocmd FileType html setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 autocmd FileType go setlocal omnifunc=go#complete#Complete
 autocmd FileType python setlocal omnifunc=jedi#completions
 
+let g:go_doc_keywordprg_enabled = 0
 let g:go_fmt_command = "goimports"
 
 if !exists('g:neocomplete#sources#omni#input_patterns')
