@@ -183,8 +183,7 @@ set timeoutlen=1000
 set ttimeoutlen=0
 
 " Enable emmet with leader key
-let g:user_emmet_install_global = 0
-autocmd FileType html,css,mustache,javascript,htmldjango,vue EmmetInstall
+let g:user_emmet_install_global = 1
 let g:user_emmet_leader_key=','
 
 let g:acp_enableAtStartup = 0
