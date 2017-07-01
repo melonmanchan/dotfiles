@@ -41,6 +41,12 @@ nnoremap Q <nop>
 inoremap jk <Esc>
 inoremap JK <Esc>
 
+nnoremap J }
+nnoremap K {
+
+vnoremap J }
+vnoremap K {
+
 " Ctrl-S as save
 noremap <silent> <C-S>          :update<CR>
 vnoremap <silent> <C-S>         <C-C>:update<CR>
@@ -56,25 +62,12 @@ vnoremap <silent> <C-z>         :u<CR>
 inoremap <silent> <C-z>         <C-O>u
 
 
-nnoremap <silent> <M-Up>    :resize +1<CR>
-nnoremap <silent> <M-Down>  :resize -1<CR>
-nnoremap <silent> <M-Left>  :call IntelligentVerticalResize('left')<CR>
-nnoremap <silent> <M-Right> :call IntelligentVerticalResize('right')<CR>
-
 set laststatus=2
 
 " For conceal markers.
 if has('conceal')
   set conceallevel=2 concealcursor=niv
 endif
-
-
-" Git
-nnoremap <leader>gc :Gcommit<CR>
-nnoremap <leader>gp :Gpush<CR>
-nnoremap <leader>gs :Gstatus<CR>
-nnoremap <leader>gd :Gvdiff<CR>
-nnoremap <leader>gl :Gpull<CR>
 
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
