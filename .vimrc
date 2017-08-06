@@ -5,7 +5,7 @@ syntax on
 call plug#begin('~/.vim/plugged')
 Plug 'mhinz/vim-grepper'
 Plug 'neomake/neomake'
-Plug 'Ternjs/tern_for_vim'
+Plug 'Ternjs/tern_for_vim', {'for': ['javascript', 'javascript.jsx']}
 Plug 'Shougo/neocomplete'
 Plug 'Shougo/neosnippet'
 Plug 'melonmanchan/vim-tmux-resizer'
@@ -14,7 +14,7 @@ Plug 'Raimondi/delimitMate'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
-Plug 'cakebaker/scss-syntax.vim'
+Plug 'cakebaker/scss-syntax.vim', {'for': 'scss'}
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'airblade/vim-gitgutter'
 Plug 'ap/vim-css-color'
@@ -28,32 +28,34 @@ Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-surround'
 Plug 'altercation/vim-colors-solarized'
 Plug 'bronson/vim-visual-star-search'
-Plug 'jelera/vim-javascript-syntax'
+Plug 'jelera/vim-javascript-syntax', {'for': ['javascript', 'javascript.jsx']}
 Plug 'haya14busa/incsearch.vim'
-Plug 'othree/jspc.vim'
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
-Plug 'fatih/vim-go'
-Plug 'rust-lang/rust.vim'
-Plug 'posva/vim-vue'
+Plug 'othree/jspc.vim', {'for': ['javascript', 'javascript.jsx']}
+Plug 'pangloss/vim-javascript', {'for': ['javascript', 'javascript.jsx']}
+Plug 'mxw/vim-jsx', {'for': 'javascript.jsx'}
+Plug 'fatih/vim-go', {'for': 'go'}
+Plug 'rust-lang/rust.vim', {'for': 'rust'}
+Plug 'posva/vim-vue', {'for': 'vue'}
 Plug 'godlygeek/tabular'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'szw/vim-maximizer'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'bling/vim-airline'
-Plug 'davidhalter/jedi-vim'
-Plug 'racer-rust/vim-racer'
+Plug 'davidhalter/jedi-vim', {'for': 'python'}
+Plug 'racer-rust/vim-racer', {'for': 'rust'}
 call plug#end()
 filetype plugin on
 
 set nomodeline
 set t_ut=
 runtime macros/matchit.vim
-
 set encoding=utf-8
 set fileencoding=utf-8
 set nowrap
 set sidescroll=1
+
+" TODO: Remove once glass mayhem is done
+let g:EditorConfig_disable_rules = ['max_line_length']
 
 let g:maximizer_default_mapping_key = '<C-F>'
 let g:polyglot_disabled = ['css', 'scss', 'javascript']
@@ -69,8 +71,8 @@ set background=dark
 colorscheme solarized
 
 " Tabs as 4 spaces
-set tabstop=4
-set shiftwidth:4
+set tabstop=2
+set shiftwidth=2
 set expandtab
 set smarttab
 
