@@ -1,9 +1,9 @@
 set nocompatible
 filetype off
-syntax on
 
 call plug#begin('~/.vim/plugged')
 Plug 'mhinz/vim-grepper'
+Plug 'mxw/vim-jsx'
 Plug 'neomake/neomake'
 Plug 'Ternjs/tern_for_vim', {'for': ['javascript', 'javascript.jsx']}
 Plug 'Shougo/neocomplete'
@@ -14,25 +14,18 @@ Plug 'Raimondi/delimitMate'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
-Plug 'cakebaker/scss-syntax.vim', {'for': 'scss'}
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'airblade/vim-gitgutter'
-Plug 'ap/vim-css-color'
+Plug 'ewilazarus/preto'
 Plug 'mattn/webapi-vim'
 Plug 'mattn/emmet-vim'
 Plug 'alvan/vim-closetag'
-Plug 'sheerun/vim-polyglot'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'othree/csscomplete.vim'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-surround'
-Plug 'altercation/vim-colors-solarized'
 Plug 'bronson/vim-visual-star-search'
-Plug 'jelera/vim-javascript-syntax', {'for': ['javascript', 'javascript.jsx']}
 Plug 'haya14busa/incsearch.vim'
-Plug 'othree/jspc.vim', {'for': ['javascript', 'javascript.jsx']}
-Plug 'pangloss/vim-javascript', {'for': ['javascript', 'javascript.jsx']}
-Plug 'mxw/vim-jsx', {'for': 'javascript.jsx'}
 Plug 'fatih/vim-go', {'for': 'go'}
 Plug 'rust-lang/rust.vim', {'for': 'rust'}
 Plug 'posva/vim-vue', {'for': 'vue'}
@@ -45,7 +38,9 @@ Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'racer-rust/vim-racer', {'for': 'rust'}
 call plug#end()
 filetype plugin on
+syntax off
 
+set relativenumber
 set nomodeline
 set t_ut=
 runtime macros/matchit.vim
@@ -65,10 +60,8 @@ au BufNewFile,BufRead *.handlebars set filetype=mustache
 au BufNewFile,BufRead *.ex set filetype=elixir
 au BufNewFile,BufRead *.exs set filetype=elixir
 au BufRead,BufNewFile *.rs set filetype=rust
-autocmd BufEnter * :syntax sync fromstart
 let g:racer_cmd = "/Users/mat/.cargo/bin/racer"
 set background=dark
-colorscheme solarized
 
 " Tabs as 4 spaces
 set tabstop=2
@@ -89,6 +82,8 @@ set lazyredraw
 " Space as mapleader
 let mapleader = " "
 
+
+colorscheme preto
 
 " Use a blinking upright bar cursor in Insert mode, a blinking block in normal
 if &term == 'xterm-256color' || &term == 'screen-256color'
@@ -172,7 +167,7 @@ vnoremap < <gv
 
 " Airline fonts
 let g:airline_powerline_fonts = 1
-let g:airline_theme = 'solarized'
+let g:airline_theme = 'minimalist'
 
 " Weird hack to enable alt keys in konsole
 let c='a'
