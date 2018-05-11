@@ -2,11 +2,15 @@ set nocompatible
 filetype off
 
 call plug#begin('~/.vim/plugged')
+Plug 'yangmillstheory/vim-snipe'
 Plug 'roxma/vim-hug-neovim-rpc'
+Plug 'HerringtonDarkholme/yats.vim'
 Plug 'roxma/nvim-completion-manager'
+" Plug 'mhartington/nvim-typescript'
 Plug 'roxma/nvim-cm-tern',  {'do': 'npm install'}
+Plug 'roxma/ncm-elm-oracle'
 Plug 'mxw/vim-jsx'
-Plug 'neomake/neomake'
+Plug 'w0rp/ale'
 Plug 'Ternjs/tern_for_vim', {'for': ['javascript', 'javascript.jsx']}
 Plug 'Shougo/neosnippet'
 Plug 'melonmanchan/vim-tmux-resizer'
@@ -31,12 +35,25 @@ Plug 'posva/vim-vue', {'for': 'vue'}
 Plug 'godlygeek/tabular'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'szw/vim-maximizer'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'bling/vim-airline'
-Plug 'racer-rust/vim-racer', {'for': 'rust'}
+Plug 'itchyny/lightline.vim'
+Plug 'itchyny/vim-gitbranch'
+" Plug 'racer-rust/vim-racer', {'for': 'rust'}
+" Plug 'ElmCast/elm-vim'
+Plug 'ludovicchabant/vim-gutentags'
 call plug#end()
 filetype plugin on
 syntax off
+
+set ignorecase
+set smartcase
+
+let g:ale_completion_enabled = 1
+map F <Plug>(snipe-F)
+map f <Plug>(snipe-f)
+map T <Plug>(snipe-T)
+map t <Plug>(snipe-t)
+
+autocmd BufNewFile,BufRead *.tsx set filetype=typescript.jsx
 
 set relativenumber
 set nomodeline
@@ -47,6 +64,37 @@ set fileencoding=utf-8
 set nowrap
 set sidescroll=1
 
+let g:lightline = {
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'gitbranch#name'
+      \ },
+      \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
+      \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
+      \ }
+
+let g:ale_lint_on_save = 1
+
+let g:ale_sass_stylelint_use_global = 1
+
+let g:ale_fix_on_save = 1
+
+let g:ale_linters = {
+\   'javascript': ['prettier', 'eslint'],
+\   'go': ['go build', 'gofmt'],
+\   'typescript': ['tslint', 'tsserver'],
+\}
+
+let g:ale_fixers = {
+\   'javascript': ['prettier'],
+\   'typescript': ['prettier'],
+\}
+
+let g:ale_javascript_prettier_options = '--no-semi --single-quote'
+
 " Completion
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
@@ -55,7 +103,6 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 let g:EditorConfig_disable_rules = ['max_line_length']
 
 let g:maximizer_default_mapping_key = '<C-F>'
-let g:polyglot_disabled = ['css', 'scss', 'javascript']
 let g:tern_show_argument_hints='on_hold'
 
 au BufNewFile,BufRead *.handlebars set filetype=mustache
@@ -98,9 +145,6 @@ if exists('$TMUX')
     let &t_EI = "\<Esc>Ptmux;\<Esc>\e[2 q\<Esc>\\"
 endif
 
-" Always neomake
-autocmd! BufWritePost * Neomake
-
 nnoremap K {
 nnoremap J }
 
@@ -129,7 +173,9 @@ imap JK <Esc>
 set hlsearch
 set incsearch
 
-nnoremap <leader>/ :Ag <cr>
+
+command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
+nnoremap <leader>/ :Ag 
 nnoremap <leader>p :GFiles <cr>
 nnoremap <leader>o :Files <cr>
 
@@ -200,12 +246,6 @@ endif
 " Sync unnamed clipboard to system clipboard
 set clipboard=unnamed
 
-" Autoreload vim on changes to .vimrc
-augroup reload_vimrc " {
-    autocmd!
-    autocmd BufWritePost $MYVIMRC source $MYVIMRC
-augroup END " }
-
 " Don't clutter current directory with Vim tmp-files
 set backupdir=~/.vim/backup//
 set directory=~/.vim/swap//
@@ -233,3 +273,4 @@ endfunction
 
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
+hi Normal ctermbg=none
