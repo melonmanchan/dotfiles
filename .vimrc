@@ -1,17 +1,19 @@
 set nocompatible
 filetype off
-
 call plug#begin('~/.vim/plugged')
 Plug 'yangmillstheory/vim-snipe'
 Plug 'roxma/vim-hug-neovim-rpc'
+Plug 'ncm2/ncm2'
 Plug 'HerringtonDarkholme/yats.vim'
-Plug 'roxma/nvim-completion-manager'
-" Plug 'mhartington/nvim-typescript'
-Plug 'roxma/nvim-cm-tern',  {'do': 'npm install'}
-Plug 'roxma/ncm-elm-oracle'
+" Plug 'mhartington/nvim-typescript',  {'do': './install.sh'}
+Plug 'roxma/nvim-yarp'
+Plug 'ncm2/ncm2-bufword'
+Plug 'ncm2/ncm2-tmux'
+Plug 'ncm2/ncm2-path'
+Plug 'ncm2/ncm2-tern',  {'do': 'npm install'}
+Plug 'ncm2/ncm2-cssomni'
 Plug 'mxw/vim-jsx'
 Plug 'w0rp/ale'
-Plug 'Ternjs/tern_for_vim', {'for': ['javascript', 'javascript.jsx']}
 Plug 'Shougo/neosnippet'
 Plug 'melonmanchan/vim-tmux-resizer'
 Plug 'Shougo/neosnippet-snippets'
@@ -25,21 +27,18 @@ Plug 'ewilazarus/preto'
 Plug 'mattn/emmet-vim'
 Plug 'alvan/vim-closetag'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'othree/csscomplete.vim'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-surround'
 Plug 'bronson/vim-visual-star-search'
 Plug 'fatih/vim-go', {'for': 'go'}
 Plug 'rust-lang/rust.vim', {'for': 'rust'}
-Plug 'posva/vim-vue', {'for': 'vue'}
+" Plug 'posva/vim-vue', {'for': 'vue'}
 Plug 'godlygeek/tabular'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'szw/vim-maximizer'
 Plug 'itchyny/lightline.vim'
 Plug 'itchyny/vim-gitbranch'
-" Plug 'racer-rust/vim-racer', {'for': 'rust'}
-" Plug 'ElmCast/elm-vim'
-Plug 'ludovicchabant/vim-gutentags'
+Plug 'racer-rust/vim-racer', {'for': 'rust'}
 call plug#end()
 filetype plugin on
 syntax off
@@ -77,6 +76,7 @@ let g:lightline = {
       \ }
 
 let g:ale_lint_on_save = 1
+let g:ale_python_flake8_executable = 'python3'
 
 let g:ale_sass_stylelint_use_global = 1
 
@@ -274,3 +274,11 @@ endfunction
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
 hi Normal ctermbg=none
+
+
+
+" enable ncm2 for all buffers
+autocmd BufEnter * call ncm2#enable_for_buffer()
+
+" IMPORTANTE: :help Ncm2PopupOpen for more information
+set completeopt=noinsert,menuone,noselect
